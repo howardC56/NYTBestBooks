@@ -66,8 +66,6 @@
 		88DD88FF23EB554100F493DB = {
 			isa = PBXGroup;
 			children = (
-				88DD893323EB56C200F493DB /* Views */,
-				88DD893E23EB575500F493DB /* View Controllers */,
 				88DD894923EB664B00F493DB /* Secrets */,
 				88DD890A23EB554100F493DB /* NYTBestBooks */,
 				88DD890923EB554100F493DB /* Products */,
@@ -85,6 +83,8 @@
 		88DD890A23EB554100F493DB /* NYTBestBooks */ = {
 			isa = PBXGroup;
 			children = (
+				88DD893323EB56C200F493DB /* Views */,
+				88DD893E23EB575500F493DB /* View Controllers */,
 				88DD892923EB560F00F493DB /* Network Services */,
 				88DD890B23EB554100F493DB /* AppDelegate.swift */,
 				88DD890D23EB554100F493DB /* SceneDelegate.swift */,
