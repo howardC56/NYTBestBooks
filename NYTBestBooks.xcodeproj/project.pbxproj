@@ -26,6 +26,7 @@
 		88DD893D23EB575100F493DB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893C23EB575100F493DB /* SettingsController.swift */; };
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
+		88DD894B23EB682800F493DB /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894A23EB682800F493DB /* SecretKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		88DD893C23EB575100F493DB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		88DD894A23EB682800F493DB /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		88DD894923EB664B00F493DB /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
+				88DD894A23EB682800F493DB /* SecretKeys.swift */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				88DD893D23EB575100F493DB /* SettingsController.swift in Sources */,
 				88DD893523EB56F300F493DB /* NYTTabController.swift in Sources */,
 				88DD892823EB560A00F493DB /* Book.swift in Sources */,
+				88DD894B23EB682800F493DB /* SecretKeys.swift in Sources */,
 				88DD890E23EB554100F493DB /* SceneDelegate.swift in Sources */,
 				88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */,
 			);
