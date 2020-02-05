@@ -26,7 +26,7 @@
 		88DD893D23EB575100F493DB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893C23EB575100F493DB /* SettingsController.swift */; };
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
-		B764E43223EB723000DA6277 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B764E43123EB723000DA6277 /* Secrets.swift */; };
+		88DD894E23EB737300F493DB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894D23EB737300F493DB /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,7 @@
 		88DD893C23EB575100F493DB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
-		B764E43123EB723000DA6277 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		88DD894D23EB737300F493DB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		88DD890A23EB554100F493DB /* NYTBestBooks */ = {
 			isa = PBXGroup;
 			children = (
-				B764E43023EB722000DA6277 /* Secrets */,
+				88DD894C23EB735F00F493DB /* Secrets */,
 				88DD893323EB56C200F493DB /* Views */,
 				88DD893E23EB575500F493DB /* View Controllers */,
 				88DD892923EB560F00F493DB /* Network Services */,
@@ -139,10 +139,10 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		B764E43023EB722000DA6277 /* Secrets */ = {
+		88DD894C23EB735F00F493DB /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
-				B764E43123EB723000DA6277 /* Secrets.swift */,
+				88DD894D23EB737300F493DB /* Secrets.swift */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DD893023EB569C00F493DB /* BookDetailView.swift in Sources */,
-				B764E43223EB723000DA6277 /* Secrets.swift in Sources */,
+				88DD894E23EB737300F493DB /* Secrets.swift in Sources */,
 				88DD892623EB55F000F493DB /* NYTAPIClient.swift in Sources */,
 				88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */,
 				88DD893223EB56B800F493DB /* SettingView.swift in Sources */,
