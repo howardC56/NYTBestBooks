@@ -26,6 +26,7 @@
 		88DD893D23EB575100F493DB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893C23EB575100F493DB /* SettingsController.swift */; };
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
+		88DD894623EB5CEF00F493DB /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894523EB5CEF00F493DB /* ApiKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		88DD893C23EB575100F493DB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		88DD894523EB5CEF00F493DB /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		88DD88FF23EB554100F493DB = {
 			isa = PBXGroup;
 			children = (
+				88DD894423EB5CCB00F493DB /* Secrets */,
 				88DD893E23EB575500F493DB /* View Controllers */,
 				88DD893323EB56C200F493DB /* Views */,
 				88DD890A23EB554100F493DB /* NYTBestBooks */,
@@ -134,6 +137,14 @@
 				88DD893623EB571000F493DB /* NYTBestSellersController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		88DD894423EB5CCB00F493DB /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				88DD894523EB5CEF00F493DB /* ApiKey.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +235,7 @@
 				88DD892E23EB568B00F493DB /* FavoritesView.swift in Sources */,
 				88DD893923EB572600F493DB /* BookDetailController.swift in Sources */,
 				88DD893723EB571000F493DB /* NYTBestSellersController.swift in Sources */,
+				88DD894623EB5CEF00F493DB /* ApiKey.swift in Sources */,
 				88DD893D23EB575100F493DB /* SettingsController.swift in Sources */,
 				88DD893523EB56F300F493DB /* NYTTabController.swift in Sources */,
 				88DD892823EB560A00F493DB /* Book.swift in Sources */,
