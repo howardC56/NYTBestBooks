@@ -16,7 +16,7 @@ class NYTTabController: UITabBarController {
         viewControllers = [firstVC,secondVC,thirdVC]
     }
 
-    let dataPersistence = DataPersistence<Book>(filename: "favoriteBooks.plist")
+    private let dataPersistence = DataPersistence<Book>(filename: "favoriteBooks.plist")
     
     private lazy var firstVC: UINavigationController = {
     let navController = UINavigationController(rootViewController: NYTBestSellersController())
