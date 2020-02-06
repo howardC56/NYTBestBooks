@@ -12,6 +12,9 @@ class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // tester
+        view.backgroundColor = .blue
 
     }
     
