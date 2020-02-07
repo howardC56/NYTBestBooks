@@ -12,7 +12,9 @@ class NYTBestSellersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed    }
+        view.backgroundColor = .systemRed
+        
+    }
   
 
 }
