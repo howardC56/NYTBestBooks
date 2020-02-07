@@ -26,6 +26,7 @@
 		88DD893D23EB575100F493DB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893C23EB575100F493DB /* SettingsController.swift */; };
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
+		B7F81EAE23ED13A700A4B257 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F81EAD23ED13A700A4B257 /* Books.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		88DD893C23EB575100F493DB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		B7F81EAD23ED13A700A4B257 /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				88DD892523EB55F000F493DB /* NYTAPIClient.swift */,
+				B7F81EAD23ED13A700A4B257 /* Books.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				88DD892623EB55F000F493DB /* NYTAPIClient.swift in Sources */,
 				88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */,
 				88DD893223EB56B800F493DB /* SettingView.swift in Sources */,
+				B7F81EAE23ED13A700A4B257 /* Books.swift in Sources */,
 				88DD890C23EB554100F493DB /* AppDelegate.swift in Sources */,
 				88DD893B23EB573B00F493DB /* FavoritesController.swift in Sources */,
 				88DD892C23EB567B00F493DB /* NYTBestSellersView.swift in Sources */,

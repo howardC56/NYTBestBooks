@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import NetworkHelper
+
+struct NYTAPIClient {
+    
+    static func getBooks(completeion: @escaping (Result<[String], AppError>) -> ()) {
+        
+        
+        
+    }
+}
