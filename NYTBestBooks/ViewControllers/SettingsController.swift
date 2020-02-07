@@ -8,9 +8,9 @@
 
 import UIKit
 
-struct AppKey {
-    static let appCategoryKey = "app categories"
-}
+//struct AppKey {
+//    static let appCategoryKey = "app categories"
+//}
 
 class SettingsController: UIViewController {
     
@@ -30,9 +30,27 @@ class SettingsController: UIViewController {
        
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
+        fetchCategory()
     }
     
- private let categories = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "Q", "L", "M", "N", "O", "P"]
+    private var categories = [Categories]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.settingsView.pickerView.reloadAllComponents()
+            }
+        }
+    }
+    
+    private func fetchCategory() {
+        CategoryAPIClient.fetchCategories() { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("error fetching categories: \(appError)")
+            case .success(let categories):
+                self?.categories = categories
+            }
+        }
+    }
 
 }
 
@@ -48,10 +66,10 @@ extension SettingsController: UIPickerViewDataSource {
 
 extension SettingsController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        return categories[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let categoryName = categories[row]
-        UserDefaults.standard.set(categoryName, forKey: AppKey.appCategoryKey)
+        let categoryName = categories[row].listName
+//        UserDefaults.standard.set(categoryName, forKey: AppKey.appCategoryKey)
     }
 }
