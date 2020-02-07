@@ -27,7 +27,18 @@
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
 		B7F81EAE23ED13A700A4B257 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F81EAD23ED13A700A4B257 /* Books.swift */; };
+		B7F81EB623ED19E300A4B257 /* NYTBestBooksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F81EB523ED19E300A4B257 /* NYTBestBooksTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7F81EB823ED19E300A4B257 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88DD890023EB554100F493DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88DD890723EB554100F493DB;
+			remoteInfo = NYTBestBooks;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		88DD890823EB554100F493DB /* NYTBestBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +61,9 @@
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
 		B7F81EAD23ED13A700A4B257 /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		B7F81EB323ED19E300A4B257 /* NYTBestBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NYTBestBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7F81EB523ED19E300A4B257 /* NYTBestBooksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestBooksTests.swift; sourceTree = "<group>"; };
+		B7F81EB723ED19E300A4B257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +76,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7F81EB023ED19E300A4B257 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				88DD890A23EB554100F493DB /* NYTBestBooks */,
+				B7F81EB423ED19E300A4B257 /* NYTBestBooksTests */,
 				88DD890923EB554100F493DB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				88DD890823EB554100F493DB /* NYTBestBooks.app */,
+				B7F81EB323ED19E300A4B257 /* NYTBestBooksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,6 +162,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		B7F81EB423ED19E300A4B257 /* NYTBestBooksTests */ = {
+			isa = PBXGroup;
+			children = (
+				B7F81EB523ED19E300A4B257 /* NYTBestBooksTests.swift */,
+				B7F81EB723ED19E300A4B257 /* Info.plist */,
+			);
+			path = NYTBestBooksTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,18 +195,40 @@
 			productReference = 88DD890823EB554100F493DB /* NYTBestBooks.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B7F81EB223ED19E300A4B257 /* NYTBestBooksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7F81EBA23ED19E300A4B257 /* Build configuration list for PBXNativeTarget "NYTBestBooksTests" */;
+			buildPhases = (
+				B7F81EAF23ED19E300A4B257 /* Sources */,
+				B7F81EB023ED19E300A4B257 /* Frameworks */,
+				B7F81EB123ED19E300A4B257 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7F81EB923ED19E300A4B257 /* PBXTargetDependency */,
+			);
+			name = NYTBestBooksTests;
+			productName = NYTBestBooksTests;
+			productReference = B7F81EB323ED19E300A4B257 /* NYTBestBooksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		88DD890023EB554100F493DB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Howard Chang";
 				TargetAttributes = {
 					88DD890723EB554100F493DB = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					B7F81EB223ED19E300A4B257 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = 88DD890723EB554100F493DB;
 					};
 				};
 			};
@@ -196,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				88DD890723EB554100F493DB /* NYTBestBooks */,
+				B7F81EB223ED19E300A4B257 /* NYTBestBooksTests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,6 +262,13 @@
 			files = (
 				88DD891823EB554400F493DB /* LaunchScreen.storyboard in Resources */,
 				88DD891523EB554400F493DB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7F81EB123ED19E300A4B257 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +298,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7F81EAF23ED19E300A4B257 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7F81EB623ED19E300A4B257 /* NYTBestBooksTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7F81EB923ED19E300A4B257 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88DD890723EB554100F493DB /* NYTBestBooks */;
+			targetProxy = B7F81EB823ED19E300A4B257 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		88DD891623EB554400F493DB /* LaunchScreen.storyboard */ = {
@@ -400,6 +478,46 @@
 			};
 			name = Release;
 		};
+		B7F81EBB23ED19E300A4B257 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDT827LK75;
+				INFOPLIST_FILE = NYTBestBooksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Amy.NYTBestBooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTBestBooks.app/NYTBestBooks";
+			};
+			name = Debug;
+		};
+		B7F81EBC23ED19E300A4B257 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDT827LK75;
+				INFOPLIST_FILE = NYTBestBooksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Amy.NYTBestBooksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NYTBestBooks.app/NYTBestBooks";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -417,6 +535,15 @@
 			buildConfigurations = (
 				88DD891D23EB554400F493DB /* Debug */,
 				88DD891E23EB554400F493DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7F81EBA23ED19E300A4B257 /* Build configuration list for PBXNativeTarget "NYTBestBooksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7F81EBB23ED19E300A4B257 /* Debug */,
+				B7F81EBC23ED19E300A4B257 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
