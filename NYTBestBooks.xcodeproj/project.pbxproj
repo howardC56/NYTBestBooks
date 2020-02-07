@@ -26,6 +26,8 @@
 		88DD893D23EB575100F493DB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893C23EB575100F493DB /* SettingsController.swift */; };
 		88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */; };
 		88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD894123EB590B00F493DB /* FavoritesViewCell.swift */; };
+		A6D8558823EE017D006ABCF0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D8558723EE017D006ABCF0 /* Category.swift */; };
+		A6D8558A23EE0312006ABCF0 /* CategoryAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6D8558923EE0312006ABCF0 /* CategoryAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		88DD893C23EB575100F493DB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerViewCell.swift; sourceTree = "<group>"; };
 		88DD894123EB590B00F493DB /* FavoritesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewCell.swift; sourceTree = "<group>"; };
+		A6D8558723EE017D006ABCF0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A6D8558923EE0312006ABCF0 /* CategoryAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				88DD892523EB55F000F493DB /* NYTAPIClient.swift */,
+				A6D8558923EE0312006ABCF0 /* CategoryAPIClient.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 				88DD893F23EB58E200F493DB /* NYTBestSellerViewCell.swift */,
 				88DD894123EB590B00F493DB /* FavoritesViewCell.swift */,
 				88DD892723EB560A00F493DB /* Book.swift */,
+				A6D8558723EE017D006ABCF0 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DD893023EB569C00F493DB /* BookDetailView.swift in Sources */,
+				A6D8558823EE017D006ABCF0 /* Category.swift in Sources */,
 				88DD892623EB55F000F493DB /* NYTAPIClient.swift in Sources */,
 				88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */,
 				88DD893223EB56B800F493DB /* SettingView.swift in Sources */,
@@ -224,6 +231,7 @@
 				88DD892E23EB568B00F493DB /* FavoritesView.swift in Sources */,
 				88DD893923EB572600F493DB /* BookDetailController.swift in Sources */,
 				88DD893723EB571000F493DB /* NYTBestSellersController.swift in Sources */,
+				A6D8558A23EE0312006ABCF0 /* CategoryAPIClient.swift in Sources */,
 				88DD893D23EB575100F493DB /* SettingsController.swift in Sources */,
 				88DD893523EB56F300F493DB /* NYTTabController.swift in Sources */,
 				88DD892823EB560A00F493DB /* Book.swift in Sources */,

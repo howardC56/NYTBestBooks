@@ -9,6 +9,17 @@
 import UIKit
 
 class SettingView: UIView {
+    
+    let title = "Settings"
+    
+    public lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemBackground
+        label.textAlignment = .center
+        label.text = title
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        return label
+    }()
 
    public lazy var pickerView: UIPickerView = {
           let pv = UIPickerView()
@@ -26,9 +37,19 @@ class SettingView: UIView {
       }
       private func commonInit() {
           setupPickerViewConstraints()
-         
+         setupTitleLabelConstraints()
       }
       
+    private func setupTitleLabelConstraints() {
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+        ])
+    }
+
       private func setupPickerViewConstraints() {
           addSubview(pickerView)
           pickerView.translatesAutoresizingMaskIntoConstraints = false
