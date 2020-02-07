@@ -13,7 +13,7 @@ struct NYTAPIClient {
     
     // spaces in the category have to be in this format "hardcover-fiction"
     
-    static func getBooks(of category: String, completeion: @escaping (Result<[TopBook], AppError>) -> ()) {
+    static func getBooks(of category: String, completeion: @escaping (Result<[Book], AppError>) -> ()) {
         
         let key = ""
         
