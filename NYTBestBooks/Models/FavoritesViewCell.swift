@@ -26,10 +26,9 @@ class FavoritesViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var rankText: UILabel = {
+    private lazy var genreRankText: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
-        label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
@@ -38,7 +37,6 @@ class FavoritesViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         return label
@@ -93,13 +91,13 @@ class FavoritesViewCell: UICollectionViewCell {
        }
     
     private func rankLabelConstraints() {
-        addSubview(rankText)
-        rankText.anchor(top: moreOptionsButton.topAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 14, paddingLeft: 12, paddingRight: 10, height: 16)
+        addSubview(genreRankText)
+        genreRankText.anchor(top: moreOptionsButton.topAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 14, paddingLeft: 12, paddingRight: 10, height: 16)
     }
     
     private func titleLabelConstraints() {
         addSubview(titleLabel)
-        titleLabel.anchor(top: rankText.bottomAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 12, paddingRight: 10, height: 20)
+        titleLabel.anchor(top: genreRankText.bottomAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 12, paddingRight: 10, height: 20)
     }
     
     private func descriptionLabelConstraints() {
