@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88193F8B23F2158F0096B2AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193F8A23F2158F0096B2AD /* Extensions.swift */; };
+		88193F8D23F21A080096B2AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193F8C23F21A080096B2AD /* Extensions.swift */; };
 		88DD890C23EB554100F493DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD890B23EB554100F493DB /* AppDelegate.swift */; };
 		88DD890E23EB554100F493DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD890D23EB554100F493DB /* SceneDelegate.swift */; };
 		88DD891523EB554400F493DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DD891423EB554400F493DB /* Assets.xcassets */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		88193F8A23F2158F0096B2AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = NetworkServices/Extensions.swift; sourceTree = "<group>"; };
+		88193F8C23F21A080096B2AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		88DD890823EB554100F493DB /* NYTBestBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DD890B23EB554100F493DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88DD890D23EB554100F493DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,12 +115,12 @@
 				88DD893E23EB575500F493DB /* ViewControllers */,
 				88DD892923EB560F00F493DB /* NetworkServices */,
 				88DD890B23EB554100F493DB /* AppDelegate.swift */,
-				88193F8A23F2158F0096B2AD /* Extensions.swift */,
 				88DD890D23EB554100F493DB /* SceneDelegate.swift */,
 				88DD892A23EB562300F493DB /* Models */,
 				88DD891423EB554400F493DB /* Assets.xcassets */,
 				88DD891623EB554400F493DB /* LaunchScreen.storyboard */,
 				88DD891923EB554400F493DB /* Info.plist */,
+				88193F8C23F21A080096B2AD /* Extensions.swift */,
 			);
 			path = NYTBestBooks;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DD893023EB569C00F493DB /* BookDetailView.swift in Sources */,
-				88193F8B23F2158F0096B2AD /* Extensions.swift in Sources */,
+				88193F8D23F21A080096B2AD /* Extensions.swift in Sources */,
 				A6D8558823EE017D006ABCF0 /* Category.swift in Sources */,
 				88DD892623EB55F000F493DB /* NYTAPIClient.swift in Sources */,
 				88DD894223EB590B00F493DB /* FavoritesViewCell.swift in Sources */,
