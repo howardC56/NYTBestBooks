@@ -23,6 +23,8 @@ final class FavoritesViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
+        label.layer.borderWidth = 0.5
+        label.layer.borderColor = UIColor.black.cgColor
         return label
     }()
     
