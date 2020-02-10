@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewCell: UICollectionViewCell {
+final class FavoritesViewCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
@@ -48,6 +48,7 @@ class FavoritesViewCell: UICollectionViewCell {
              button.layer.cornerRadius = 20
              button.setBackgroundImage(UIImage(systemName: "ellipsis"), for: .normal)
              button.tintColor = .black
+             button.animateButtonView(button)
         return button
     }()
     
@@ -64,7 +65,7 @@ class FavoritesViewCell: UICollectionViewCell {
         
     }
     
-    func commonSetup() {
+   private func commonSetup() {
         layer.cornerRadius = 10
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 5
