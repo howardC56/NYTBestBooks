@@ -18,6 +18,7 @@ class FavoritesController: UIViewController {
             favoriteView.collectionview.reloadData()
 //             if favoriteBooks.isEmpty {
 //                favoriteView.collectionview.backgroundView = EmptyFavoritesView()
+//                  emitBooks()
 //                       } else {
 //                           favoriteView.collectionview.backgroundView = nil
 //                       }

@@ -25,7 +25,6 @@ class FavoritesView: UIView {
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: frame.width / 1.2, height: frame.height / 1.5)
         layout.sectionInset = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
-        //layout.itemSize = CGSize(width: 375, height: 375)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemBackground
         return cv
