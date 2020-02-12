@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageKit
 
 protocol FavoritesViewCellDelegate: class {
     func didPressMoreOptionsButton(cell: FavoritesViewCell, book: Book)
@@ -84,6 +85,17 @@ final class FavoritesViewCell: UICollectionViewCell {
         titleLabel.text = book.title
         genreRankText.text = " Genre: , Rank: \(book.rank) "
         descriptionLabel.text = book.description
+        imageView.getImage(with: book.bookImage) { [weak self ](result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    self?.imageView.image = UIImage(systemName: "exclamationmark-octagon")
+                case .success(let image):
+                    self?.imageView.image = image
+                }
+            }
+            
+        }
     }
     
     private func commonSetup() {
@@ -98,8 +110,6 @@ final class FavoritesViewCell: UICollectionViewCell {
         layer.shadowOffset = .zero
         layer.shadowOpacity = 0.5
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        //        layer.shouldRasterize = true
-        //        layer.rasterizationScale = UIScreen.main.scale
         backgroundColor = .white
     }
     

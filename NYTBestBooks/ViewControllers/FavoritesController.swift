@@ -24,10 +24,18 @@ class FavoritesController: UIViewController {
         }
     }
     
+    func emitBooks() {
+        let emitter = Emitter.get(with: #imageLiteral(resourceName: "leatherBook"))
+        emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 5)
+        emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
+        view.layer.addSublayer(emitter)
+      }
+    
     override func loadView() {
         if favoriteBooks.isEmpty {
         view = EmptyFavoritesView()
-        title = "Empty Gallery - Add Some Books"
+        navigationItem.title = "Empty Gallery - Add Some Books"
+        emitBooks()
         } else {
         view = favoriteView
         title = "Favorites"

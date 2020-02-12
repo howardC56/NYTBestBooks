@@ -5,7 +5,6 @@
 //  Created by Howard Chang on 2/11/20.
 //  Copyright © 2020 Howard Chang. All rights reserved.
 //
-
 import UIKit
 
 class EmptyFavoritesView: UIView {
@@ -31,6 +30,7 @@ class EmptyFavoritesView: UIView {
    private func commonInit() {
     backgroundImageConstraints()
    }
+    
    
     private func backgroundImageConstraints() {
     addSubview(backgroundImage)
