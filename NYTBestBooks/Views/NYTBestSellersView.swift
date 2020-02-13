@@ -45,10 +45,10 @@ class NYTBestSellersView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.70)
+            collectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.60)
         ])
     }
     

@@ -15,11 +15,13 @@ class NYTBestSellersController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Top Books"
         view = bestSellerView
         view.backgroundColor = .tertiarySystemBackground
         bestSellerView.collectionView.dataSource = self
         bestSellerView.collectionView.delegate = self
-        bestSellerView.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
+        bestSellerView.collectionView.register(NYTBestSellerViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
         
     }
   
@@ -32,8 +34,10 @@ extension NYTBestSellersController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bestSellerCell", for: indexPath)
-        cell.backgroundColor = #colorLiteral(red: 0.8102939129, green: 0.7310073972, blue: 0.8809230924, alpha: 1)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bestSellerCell", for: indexPath) as? NYTBestSellerViewCell else {
+            fatalError("could not downcast to a bestSellerCell")
+        }
+        //cell.backgroundColor = .red
         return cell
     }
 }
