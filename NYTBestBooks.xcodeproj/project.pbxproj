@@ -46,8 +46,8 @@
 
 /* Begin PBXFileReference section */
 		88193F8C23F21A080096B2AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		88193FCB23F5B9700096B2AD /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Emitter.swift; path = NYTBestBooks/Emitter.swift; sourceTree = "<group>"; };
-		88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmptyFavoritesView.swift; path = NYTBestBooks/Views/EmptyFavoritesView.swift; sourceTree = "<group>"; };
+		88193FCB23F5B9700096B2AD /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
+		88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFavoritesView.swift; sourceTree = "<group>"; };
 		88DD890823EB554100F493DB /* NYTBestBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DD890B23EB554100F493DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88DD890D23EB554100F493DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,11 +94,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88193FCF23F5BB8A0096B2AD /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				88DD890D23EB554100F493DB /* SceneDelegate.swift */,
+				88DD890B23EB554100F493DB /* AppDelegate.swift */,
+				88193FCB23F5B9700096B2AD /* Emitter.swift */,
+				88193F8C23F21A080096B2AD /* Extensions.swift */,
+				88DD891623EB554400F493DB /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		88DD88FF23EB554100F493DB = {
 			isa = PBXGroup;
 			children = (
-				88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */,
-				88193FCB23F5B9700096B2AD /* Emitter.swift */,
 				88DD890A23EB554100F493DB /* NYTBestBooks */,
 				B7F81EB423ED19E300A4B257 /* NYTBestBooksTests */,
 				88DD890923EB554100F493DB /* Products */,
@@ -120,13 +130,10 @@
 				88DD893323EB56C200F493DB /* Views */,
 				88DD893E23EB575500F493DB /* ViewControllers */,
 				88DD892923EB560F00F493DB /* NetworkServices */,
-				88DD890B23EB554100F493DB /* AppDelegate.swift */,
-				88DD890D23EB554100F493DB /* SceneDelegate.swift */,
 				88DD892A23EB562300F493DB /* Models */,
 				88DD891423EB554400F493DB /* Assets.xcassets */,
-				88DD891623EB554400F493DB /* LaunchScreen.storyboard */,
+				88193FCF23F5BB8A0096B2AD /* SupportingFiles */,
 				88DD891923EB554400F493DB /* Info.plist */,
-				88193F8C23F21A080096B2AD /* Extensions.swift */,
 			);
 			path = NYTBestBooks;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 				88DD892B23EB567B00F493DB /* NYTBestSellersView.swift */,
 				88DD892D23EB568B00F493DB /* FavoritesView.swift */,
 				88DD892F23EB569C00F493DB /* BookDetailView.swift */,
+				88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */,
 				88DD893123EB56B800F493DB /* SettingView.swift */,
 			);
 			path = Views;
