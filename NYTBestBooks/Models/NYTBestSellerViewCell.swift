@@ -16,9 +16,7 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.image = UIImage(systemName: "book")
         image.clipsToBounds = true
-        image.contentMode = .scaleAspectFit
-        image.layer.borderWidth = 1.5
-        image.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 10
         return image
     }()
@@ -53,8 +51,8 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             bookImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            bookImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.90),
-            bookImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.70)
+            bookImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.80),
+            bookImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.60)
         ])
         
     }
@@ -69,10 +67,11 @@ class NYTBestSellerViewCell: UICollectionViewCell {
             rankLabel.heightAnchor.constraint(equalToConstant: 30),
             rankLabel.widthAnchor.constraint(equalTo: rankLabel.heightAnchor)
         ])
-        
     }
     
     public func configureCell(book: Book) {
+        rankLabel.text = book.rank.description
+        
         bookImage.getImage(with: book.bookImage) { [weak self] (result) in
             switch result {
             case .failure(let appError):
