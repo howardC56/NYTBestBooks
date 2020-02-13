@@ -5,13 +5,13 @@
 //  Created by Howard Chang on 2/5/20.
 //  Copyright © 2020 Howard Chang. All rights reserved.
 //
-
+import DataPersistence
 import UIKit
 
 class FavoritesController: UIViewController {
     
     private let favoriteView = FavoritesView()
-    //public var dataPersistence: DataPersistence<Book>!
+    private var dataPersistence: DataPersistence<Book>!
     
     private var favoriteBooks = [Book]() {
         didSet {
@@ -31,6 +31,16 @@ class FavoritesController: UIViewController {
         emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
         view.layer.addSublayer(emitter)
       }
+    
+    init(dataPersistence: DataPersistence<Book>) {
+           self.dataPersistence = dataPersistence
+           super.init(nibName: nil, bundle: nil)
+           self.dataPersistence.delegate = self
+       }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         if favoriteBooks.isEmpty {
@@ -78,6 +88,7 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selected = favoriteBooks[indexPath.row]
         let detailVC = BookDetailController()
         //detailVC.article = favoriteBooks[indexPath.row]
         //detailVC.dataPersistence = dataPersistence
@@ -111,4 +122,16 @@ extension FavoritesController: FavoritesViewCellDelegate {
             print("error deleting article: \(error)")
         }
     }
+}
+
+extension FavoritesController: DataPersistenceDelegate {
+    func didSaveItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        getFavoriteBooks()
+    }
+    
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
+        getFavoriteBooks()
+    }
+    
+    
 }
