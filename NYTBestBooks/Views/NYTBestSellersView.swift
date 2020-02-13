@@ -12,13 +12,16 @@ class NYTBestSellersView: UIView {
     
     public lazy var moreButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Category", for: .normal)
+        button.setTitle("Search categories", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         return button
     }()
     
-    private var collectionView: UICollectionView = {
-       let cv = UICollectionView()
+    public var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.backgroundColor = .systemGroupedBackground
         return cv
     }()
     
@@ -54,9 +57,9 @@ class NYTBestSellersView: UIView {
         moreButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            moreButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 10),
-            moreButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            moreButton.heightAnchor.constraint(equalTo:  heightAnchor, multiplier: 0.15),
+            moreButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            moreButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            moreButton.heightAnchor.constraint(equalTo:  heightAnchor, multiplier: 0.06),
             moreButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.60)
             
         ])
