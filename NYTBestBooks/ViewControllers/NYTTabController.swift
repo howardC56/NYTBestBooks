@@ -26,7 +26,7 @@ class NYTTabController: UITabBarController {
  }()
     
     private lazy var secondVC: UINavigationController = {
-       let navController = UINavigationController(rootViewController: FavoritesController())
+        let navController = UINavigationController(rootViewController: FavoritesController(dataPersistence: dataPersistence))
       navController.tabBarItem = UITabBarItem(title: "Favorites",
                                                image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star.fill"))
       return navController
