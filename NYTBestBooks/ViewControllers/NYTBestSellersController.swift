@@ -11,6 +11,12 @@ import UIKit
 class NYTBestSellersController: UIViewController {
     
     private let bestSellerView = NYTBestSellersView()
+    private var menuShowing = false
+    private var category = "Paperback-Nonfiction" {
+        didSet {
+            getBooks()
+        }
+    }
     
     private var books = [Book]() {
         didSet {
@@ -20,62 +26,156 @@ class NYTBestSellersController: UIViewController {
         }
     }
     
-
+    private var categories = [Categories]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSellerView.sideMenu.collectionView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Top Books"
         view = bestSellerView
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleMenu(_:)))
+        
+        navigationItem.leftBarButtonItem?.tintColor = .black
         view.backgroundColor = .tertiarySystemBackground
+        
+        bestSellerView.sideMenu.collectionView.dataSource = self
+        bestSellerView.sideMenu.collectionView.delegate = self
+        
         bestSellerView.collectionView.dataSource = self
         bestSellerView.collectionView.delegate = self
+        
         bestSellerView.collectionView.register(NYTBestSellerViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
+        bestSellerView.sideMenu.collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "categoryCell")
+        
         getBooks()
+        fetchCategory()
+    }
+    
+    @objc public func handleMenu(_ sender: UIBarButtonItem) {
+        if menuShowing {
+            UIView.animate(withDuration: 0.3) {
+                self.bestSellerView.sideMenuWidth?.isActive = false
+                self.bestSellerView.sideMenuWidth = self.bestSellerView.sideMenu.widthAnchor.constraint(equalToConstant: 0)
+                self.bestSellerView.sideMenuWidth?.isActive = true
+                self.bestSellerView.layoutIfNeeded()
+            }
+            
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.bestSellerView.sideMenuWidth?.isActive = false
+                self.bestSellerView.sideMenuWidth = self.bestSellerView.sideMenu.widthAnchor.constraint(equalToConstant: 250)
+                self.bestSellerView.sideMenuWidth?.isActive = true
+                self.bestSellerView.layoutIfNeeded()
+            }
+            
+        }
+        menuShowing = !menuShowing
+    }
+    
+    
+    private func fetchCategory() {
+        CategoryAPIClient.fetchCategories() { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("error fetching categories: \(appError)")
+            case .success(let categories):
+                self?.categories = categories
+            }
+        }
     }
     
     private func getBooks() {
-        NYTAPIClient.getBooks(of: "hardcover-fiction") { [weak self] (result) in
+        NYTAPIClient.getBooks(of: category) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-               print("error getting books: \(appError)")
+                print("error getting books: \(appError)")
             case .success(let books):
                 self?.books = books
                 print(books.count)
             }
         }
     }
-  
-
 }
 
 extension NYTBestSellersController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return books.count
+        
+        var count = 1
+        
+        if collectionView == bestSellerView.sideMenu.collectionView {
+            count = categories.count
+        } else if collectionView == bestSellerView.collectionView {
+            count = books.count
+        }
+        return count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bestSellerCell", for: indexPath) as? NYTBestSellerViewCell else {
-            fatalError("could not downcast to a bestSellerCell")
+        
+        
+        if collectionView == bestSellerView.collectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bestSellerCell", for: indexPath) as? NYTBestSellerViewCell else {
+                fatalError("could not downcast to a bestSellerCell")
+            }
+            let book = books[indexPath.row]
+            cell.configureCell(book: book)
+            return cell
+            
+        } else if collectionView == bestSellerView.sideMenu.collectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell else {
+                fatalError("could not downcast to CategoryCell")
+            }
+            
+            let category = categories[indexPath.row]
+            cell.configureCell(category: category)
+            return cell
         }
-        let book = books[indexPath.row]
-        cell.configureCell(book: book)
-        //cell.backgroundColor = .red
-        return cell
+        
+        return UICollectionViewCell()
+        
     }
 }
 
 extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let maxSize: CGSize = bestSellerView.safeAreaLayoutGuide.layoutFrame.size
         
-        let itemWidth = maxSize.width
+        if collectionView == bestSellerView.collectionView {
+            let itemWidth = maxSize.width
+            let itemHeight = maxSize.height * 0.70
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        } else if collectionView == bestSellerView.sideMenu.collectionView {
+            let itemWidth = maxSize.width * 0.5
+            let itemHeight = CGFloat(50)
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        }
+        return CGSize(width: 100, height: 100)
         
-        let itemHeight = maxSize.height * 0.70
-        
-        return CGSize(width: itemWidth, height: itemHeight)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == bestSellerView.collectionView {
+            // segue to detailVC
+        } else if collectionView == bestSellerView.sideMenu.collectionView {
+            category = categories[indexPath.row].displayName // returns bad url because
+            print(category)
+            
+        }
+    }
 }

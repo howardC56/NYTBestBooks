@@ -25,7 +25,7 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "X"
         label.textAlignment = .center
-        label.backgroundColor = .blue
+        // label.backgroundColor = .blue
         return label
     }()
     
@@ -77,7 +77,10 @@ class NYTBestSellerViewCell: UICollectionViewCell {
             case .failure(let appError):
                 print("issue with book image, \(appError)")
             case .success(let bookImage):
-                self?.bookImage.image = bookImage
+                DispatchQueue.main.async {
+                    self?.bookImage.image = bookImage
+                }
+                
             }
         }
         

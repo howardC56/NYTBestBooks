@@ -23,7 +23,7 @@ struct SearchInfo: Codable & Equatable {
 }
 
 struct Book: Codable & Equatable {
-    let rank: Double
+    let rank: Int
     let description: String
     let title: String
     let author: String

@@ -10,20 +10,23 @@ import UIKit
 
 class NYTBestSellersView: UIView {
     
-    public lazy var moreButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Search categories", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-        return button
-    }()
+    public var sideMenuWidth: NSLayoutConstraint?
     
     public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemGroupedBackground
+        cv.isPagingEnabled = true
         return cv
     }()
+    
+    public var sideMenu: SidebarView = {
+        
+        let view = SidebarView()
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -37,7 +40,7 @@ class NYTBestSellersView: UIView {
     
     private func commonInit() {
         collectionConstraints()
-        buttonConstraints()
+        sideMenuComstraints()
     }
 
     private func collectionConstraints() {
@@ -52,18 +55,19 @@ class NYTBestSellersView: UIView {
         ])
     }
     
-    private func buttonConstraints() {
-        addSubview(moreButton)
-        moreButton.translatesAutoresizingMaskIntoConstraints = false
+    private func sideMenuComstraints() {
+        addSubview(sideMenu)
+        sideMenu.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            moreButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            moreButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            moreButton.heightAnchor.constraint(equalTo:  heightAnchor, multiplier: 0.06),
-            moreButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.60)
-            
+            sideMenu.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            sideMenu.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            sideMenu.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sideMenu.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        
+        sideMenuWidth = sideMenu.widthAnchor.constraint(equalToConstant: 0)
+        sideMenuWidth?.isActive = true
     }
-  
 
 }

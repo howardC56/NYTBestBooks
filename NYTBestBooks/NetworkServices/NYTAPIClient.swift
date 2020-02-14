@@ -15,7 +15,7 @@ struct NYTAPIClient {
     
     static func getBooks(of category: String, completeion: @escaping (Result<[Book], AppError>) -> ()) {
         
-        let key = ""
+        let key = "GoVYYPAGJXYZkET8EpFJggK0UQWAQcAl"
         
         let endpoint = "https://api.nytimes.com/svc/books/v3/lists/current/\(category).json?api-key=\(key)"
         
