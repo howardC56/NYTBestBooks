@@ -9,6 +9,12 @@
 import UIKit
 
 class BookDetailView: UIView {
+    
+    public lazy var favoriteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "star"), for: .normal)
+        return button
+    }()
 
     public lazy var bookImage: UIImageView = {
         let imageView = UIImageView()
@@ -75,12 +81,24 @@ class BookDetailView: UIView {
     }
     
     private func commonInit() {
+        setupFavoriteButton()
         setupImageView()
         setupTitleLabel()
         setupAuthorLabel()
         setupRankLabel()
         setupWeeksOnListLabel()
         setupDescriptionLabel()
+    }
+    
+    private func setupFavoriteButton() {
+        addSubview(favoriteButton)
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            favoriteButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 30),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 30)
+        ])
     }
     
     private func setupImageView() {

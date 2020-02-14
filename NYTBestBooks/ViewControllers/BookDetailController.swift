@@ -9,9 +9,70 @@
 import UIKit
 
 class BookDetailController: UIViewController {
-
+    
+    public var book: Book?
+    let toolBar = UIToolbar()
+    
+    
+    //let detailView = DetailView()
+    // need to add the data persistence
+    // public var dataPersistence: DataPersistence<Book>!
+    
+    override func loadView() {
+        //view = detailView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupToolBar()
     }
-   
+    
+    
+    public func updateUI() {
+        // TODO: Using the "Book" that's been persisted
+        // set up the image for the book
+        // set up the title of the book
+        // set up the description
+    }
+    
+    public func setupToolBar() {
+        view.addSubview(toolBar)
+        
+        var items = [UIBarButtonItem]()
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(
+            UIBarButtonItem(image: UIImage(named: "apple-icon"), style: .plain, target: nil, action: nil)
+        )
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(
+            UIBarButtonItem(image: UIImage(named: "barnes-and-noble"), style: .plain, target: nil, action: nil)
+        )
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(
+            UIBarButtonItem(image: UIImage(named: "amazon-a"), style: .plain, target: nil, action: nil)
+        )
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        items.append(
+            UIBarButtonItem(image: UIImage(named: "location-icon"), style: .plain, target: nil, action: nil))
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+        
+        toolBar.barTintColor = .black
+        toolBar.tintColor = .white
+        
+        view.addSubview(toolBar)
+        let guide = view.safeAreaLayoutGuide
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            toolBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            toolBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            toolBar.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+            toolBar.heightAnchor.constraint(equalToConstant: 60)
+        ])
+        toolBar.setItems(items, animated: true)
+    }
+    
+    
+    
 }
+
