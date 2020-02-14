@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import DataPersistence
 
 class BookDetailController: UIViewController {
     
-    public var book: Book?
+    private var book: Book
+    private var dataPersistence: DataPersistence<Book>
     let toolBar = UIToolbar()
+    
+    
+    init(dataPersistence: DataPersistence<Book>, book: Book) {
+        self.dataPersistence = dataPersistence
+        self.book = book
+        super.init(nibName: nil, bundle: nil)
+        // self.dataPersistence.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     //let detailView = DetailView()

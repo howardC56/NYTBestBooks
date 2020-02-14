@@ -135,9 +135,10 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if altCell == true {
             let selected = favoriteBooks[indexPath.row]
-            let detailVC = BookDetailController()
+            let detailVC = BookDetailController(dataPersistence: dataPersistence, book: selected)
             //detailVC.article = favoriteBooks[indexPath.row]
             //detailVC.dataPersistence = dataPersistence
             present(detailVC, animated: true)
@@ -185,7 +186,8 @@ extension FavoritesController: DataPersistenceDelegate {
 extension FavoritesController: FavoritesAltViewCellDelegate {
     func didPressBookButton(cell: FavoritesAltCollectionViewCell, book: Book) {
         guard let selected = favoriteBooks.firstIndex(of: book) else { return }
-        let detailVC = BookDetailController()
+        let book = favoriteBooks[selected]
+        let detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
         present(detailVC, animated: true)
     }
     
