@@ -120,7 +120,6 @@ class NYTBestSellersController: UIViewController {
                 print("error getting books: \(appError)")
             case .success(let books):
                 self?.books = books
-                print(books.count)
             }
         }
     }

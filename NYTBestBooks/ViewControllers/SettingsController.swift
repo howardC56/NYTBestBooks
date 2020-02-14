@@ -8,9 +8,6 @@
 
 import UIKit
 
-//struct AppKey {
-//    static let appCategoryKey = "app categories"
-//}
 
 class SettingsController: UIViewController {
     
@@ -41,7 +38,18 @@ class SettingsController: UIViewController {
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
         fetchCategory()
+    
+        //setPicker()
+        
     }
+    private func setPicker() {
+        let index = userPreference.getCategoryRow() ?? 0
+        DispatchQueue.main.async {
+            self.settingsView.pickerView.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
+
+       
     
     private var categories = [Categories]() {
         didSet {
@@ -58,6 +66,7 @@ class SettingsController: UIViewController {
                 print("error fetching categories: \(appError)")
             case .success(let categories):
                 self?.categories = categories
+                self?.setPicker()
             }
         }
     }
@@ -81,9 +90,7 @@ extension SettingsController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = categories[row].listName
         
-        userPreference.setCategoryName(categoryName.replacingOccurrences(of: " ", with: "-"))
-        //print(categoryName)
-        //print(categoryName.replacingOccurrences(of: " ", with: "-"))
+        userPreference.setCategoryName(categoryName.replacingOccurrences(of: " ", with: "-"), row: row)
         
     }
 }

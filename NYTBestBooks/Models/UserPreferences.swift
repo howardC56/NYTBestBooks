@@ -14,6 +14,7 @@ import Foundation
 
 struct UserKey {
   static let categoryName = "Category"
+    static let categoryRow = "Category Row"
 }
 
 protocol UserPreferenceDelegate: AnyObject {
@@ -26,9 +27,15 @@ final class UserPreference {
   public func getCategoryName() -> String? {
     return UserDefaults.standard.object(forKey: UserKey.categoryName) as? String
   }
+    
+    public func getCategoryRow() -> Int? {
+       return UserDefaults.standard.object(forKey: UserKey.categoryRow) as? Int
+     }
+    
   
-  public func setCategoryName(_ categoryName: String) {
-    UserDefaults.standard.set(categoryName, forKey: UserKey.categoryName)
+    public func setCategoryName(_ categoryName: String, row: Int) {
+        UserDefaults.standard.set(categoryName, forKey: UserKey.categoryName)
+        UserDefaults.standard.set(row, forKey: UserKey.categoryRow)
     delegate?.didChangeCategory(self, category: categoryName)
   }
 }
