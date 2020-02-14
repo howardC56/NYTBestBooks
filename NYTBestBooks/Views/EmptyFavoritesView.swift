@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class EmptyFavoritesView: UIView {
+final class EmptyFavoritesView: UIView {
     
     private var backgroundImage: UIImageView = {
         let image = UIImageView()

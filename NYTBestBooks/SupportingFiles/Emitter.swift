@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Emitter {
+final class Emitter {
     static func get(with image: UIImage) -> CAEmitterLayer {
         let emitter = CAEmitterLayer()
         emitter.emitterShape = CAEmitterLayerEmitterShape.line

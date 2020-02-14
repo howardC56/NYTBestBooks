@@ -10,6 +10,7 @@
 		88193F8D23F21A080096B2AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193F8C23F21A080096B2AD /* Extensions.swift */; };
 		88193FCC23F5B9700096B2AD /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193FCB23F5B9700096B2AD /* Emitter.swift */; };
 		88193FCE23F5B9820096B2AD /* EmptyFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */; };
+		88193FD123F5F6400096B2AD /* FavoritesAltCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88193FD023F5F6400096B2AD /* FavoritesAltCollectionViewCell.swift */; };
 		88DD890C23EB554100F493DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD890B23EB554100F493DB /* AppDelegate.swift */; };
 		88DD890E23EB554100F493DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DD890D23EB554100F493DB /* SceneDelegate.swift */; };
 		88DD891523EB554400F493DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DD891423EB554400F493DB /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		88193F8C23F21A080096B2AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		88193FCB23F5B9700096B2AD /* Emitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emitter.swift; sourceTree = "<group>"; };
 		88193FCD23F5B9820096B2AD /* EmptyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFavoritesView.swift; sourceTree = "<group>"; };
+		88193FD023F5F6400096B2AD /* FavoritesAltCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesAltCollectionViewCell.swift; sourceTree = "<group>"; };
 		88DD890823EB554100F493DB /* NYTBestBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DD890B23EB554100F493DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88DD890D23EB554100F493DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				88DD894123EB590B00F493DB /* FavoritesViewCell.swift */,
 				88DD892723EB560A00F493DB /* Book.swift */,
 				A6D8558723EE017D006ABCF0 /* Category.swift */,
+				88193FD023F5F6400096B2AD /* FavoritesAltCollectionViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				88DD893523EB56F300F493DB /* NYTTabController.swift in Sources */,
 				88DD892823EB560A00F493DB /* Book.swift in Sources */,
 				88DD890E23EB554100F493DB /* SceneDelegate.swift in Sources */,
+				88193FD123F5F6400096B2AD /* FavoritesAltCollectionViewCell.swift in Sources */,
 				88DD894023EB58E200F493DB /* NYTBestSellerViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
