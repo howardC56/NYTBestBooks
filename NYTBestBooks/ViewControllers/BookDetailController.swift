@@ -11,6 +11,8 @@ import DataPersistence
 
 class BookDetailController: UIViewController {
     
+    private var detailView = BookDetailView()
+    
     private var book: Book
     private var dataPersistence: DataPersistence<Book>
     let toolBar = UIToolbar()
@@ -33,7 +35,7 @@ class BookDetailController: UIViewController {
     // public var dataPersistence: DataPersistence<Book>!
     
     override func loadView() {
-        //view = detailView
+        view = detailView
     }
     
     override func viewDidLoad() {

@@ -14,6 +14,7 @@ class NYTTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewControllers = [firstVC,secondVC,thirdVC]
+        UITabBar.appearance().tintColor = .black
     }
 
     private let dataPersistence = DataPersistence<Book>(filename: "favoriteBooks.plist")

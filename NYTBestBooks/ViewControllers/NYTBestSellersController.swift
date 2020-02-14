@@ -10,10 +10,11 @@ import UIKit
 import DataPersistence
 
 class NYTBestSellersController: UIViewController {
-    private var dataPersistence: DataPersistence<Book>
     
+    private var dataPersistence: DataPersistence<Book>
     private let bestSellerView = NYTBestSellersView()
     private var menuShowing = false
+    
     private var category = "Paperback-Nonfiction" {
         didSet {
             getBooks()

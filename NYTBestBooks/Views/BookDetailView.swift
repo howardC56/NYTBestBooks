@@ -88,6 +88,7 @@ class BookDetailView: UIView {
         setupRankLabel()
         setupWeeksOnListLabel()
         setupDescriptionLabel()
+        backgroundColor = .white
     }
     
     private func setupFavoriteButton() {
