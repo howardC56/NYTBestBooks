@@ -57,17 +57,17 @@ final class FavoritesViewCell: UICollectionViewCell {
     }()
     
     public lazy var moreOptionsButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 10, y: 10, width: 20, height: 20))
+        let button = UIButton(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
         button.backgroundColor = .clear
         button.layer.cornerRadius = 20
         button.setBackgroundImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(moreButtonPressed), for: .touchUpInside)
-        button.animateButtonView(button)
         return button
     }()
     
     @objc func moreButtonPressed(_ sender: UIButton) {
+        animateButtonView(sender)
         delegate?.didPressMoreOptionsButton(cell: self, book: currentBook)
     }
     
@@ -93,7 +93,7 @@ final class FavoritesViewCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 switch result {
                 case .failure:
-                    self?.imageView.image = UIImage(systemName: "exclamationmark-octagon")
+                    self?.imageView.image = UIImage(systemName: "exclamationmark.octagon")
                 case .success(let image):
                     self?.imageView.image = image
                 }
@@ -124,12 +124,12 @@ final class FavoritesViewCell: UICollectionViewCell {
     
     private func deleteButtonConstraints() {
         addSubview(moreOptionsButton)
-        moreOptionsButton.anchor(top: imageView.topAnchor, right: rightAnchor, paddingRight: 10, width: 40, height: 40)
+        moreOptionsButton.anchor(top: imageView.topAnchor, right: rightAnchor, paddingRight: 10, width: 24, height: 24)
     }
     
     private func rankLabelConstraints() {
         addSubview(rankTextLabel)
-        rankTextLabel.anchor(top: moreOptionsButton.topAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 30, paddingLeft: 12, paddingRight: 10, height: 16)
+        rankTextLabel.anchor(top: moreOptionsButton.bottomAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 30, paddingLeft: 12, paddingRight: 10, height: 16)
     }
     
     private func titleLabelConstraints() {

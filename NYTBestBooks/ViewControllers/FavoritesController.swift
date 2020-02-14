@@ -38,33 +38,33 @@ final class FavoritesController: UIViewController {
     }
     
     override func loadView() {
-                if favoriteBooks.isEmpty {
-                view = EmptyFavoritesView()
-                navigationItem.title = "Empty Gallery - Add Some Books"
-                } else {
+//                if favoriteBooks.isEmpty {
+//                view = EmptyFavoritesView()
+//                navigationItem.title = "Empty Gallery - Add Some Books"
+//                } else {
         view = favoriteView
         title = "Favorites"
-         }
+         //}
     }
     
     //Remove after testing
-    private func getBooks() {
-        NYTAPIClient.getBooks(of: "hardcover-fiction") { [weak self] (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let appError):
-                    print("error getting books: \(appError)")
-                case .success(let books):
-                    self?.favoriteBooks = books
-                }
-            }
-        }
-    }
+//    private func getBooks() {
+//        NYTAPIClient.getBooks(of: "Business-Books") { [weak self] (result) in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(let appError):
+//                    print("error getting books: \(appError)")
+//                case .success(let books):
+//                    self?.favoriteBooks = books
+//                }
+//            }
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        //getFavoriteBooks()
+        getFavoriteBooks()
         favoriteView.collectionview.delegate = self
         favoriteView.collectionview.dataSource = self
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
@@ -105,6 +105,7 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesAltCollectionViewCell", for: indexPath) as? FavoritesAltCollectionViewCell else { fatalError() }
             cell.configCell(saved)
+            cell.delegate = self
             return cell
         }
     }
@@ -139,7 +140,7 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
             let detailVC = BookDetailController()
             //detailVC.article = favoriteBooks[indexPath.row]
             //detailVC.dataPersistence = dataPersistence
-            navigationController?.pushViewController(detailVC, animated: true)
+            present(detailVC, animated: true)
         }
     }
 }
@@ -185,8 +186,7 @@ extension FavoritesController: FavoritesAltViewCellDelegate {
     func didPressBookButton(cell: FavoritesAltCollectionViewCell, book: Book) {
         guard let selected = favoriteBooks.firstIndex(of: book) else { return }
         let detailVC = BookDetailController()
-        print("Book pressed")
-        navigationController?.pushViewController(detailVC, animated: true)
+        present(detailVC, animated: true)
     }
     
     

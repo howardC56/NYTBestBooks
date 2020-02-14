@@ -36,6 +36,7 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
      }()
     
     @objc private func pressedBook(_ sender: UIButton) {
+        animateButtonView(sender)
         delegate?.didPressBookButton(cell: self, book: currentBook)
     }
     
@@ -46,7 +47,7 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
     public func configCell(_ book: Book) {
         currentBook = book
         let imageView = UIImageView()
-        imageView.getImage(with: book.bookImage) { [ weak self ](result) in
+        imageView.getImage(with: book.bookImage) { [ weak self ] (result) in
                    DispatchQueue.main.async {
                        switch result {
                        case .failure:
@@ -55,7 +56,6 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
                         self?.bookButton.setImage(image, for: .normal)
                        }
                    }
-                   
                }
     }
     
