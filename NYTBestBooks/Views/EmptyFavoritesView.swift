@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class EmptyFavoritesView: UIView {
+final class EmptyFavoritesView: UIView {
     
     private var backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -29,8 +29,15 @@ class EmptyFavoritesView: UIView {
    
    private func commonInit() {
     backgroundImageConstraints()
+    emitBooks()
    }
     
+    private func emitBooks() {
+           let emitter = Emitter.get(with: #imageLiteral(resourceName: "leatherBook"))
+           emitter.emitterPosition = CGPoint(x: frame.width / 2, y: 5)
+           emitter.emitterSize = CGSize(width: frame.width, height: 2)
+           layer.addSublayer(emitter)
+       }
    
     private func backgroundImageConstraints() {
     addSubview(backgroundImage)

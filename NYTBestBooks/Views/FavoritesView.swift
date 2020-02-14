@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesView: UIView {
+final class FavoritesView: UIView {
     
     override init(frame: CGRect ) {
         super.init(frame: UIScreen.main.bounds)
