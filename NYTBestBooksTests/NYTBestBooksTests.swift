@@ -15,7 +15,7 @@ class NYTBestBooksTests: XCTestCase {
     func testApiClient() {
         let expectedCount = 15
         let category = "hardcover-fiction"
-        let exp = XCTestExpectation(description: "books found")
+        let exp = XCTestExpectation(description: "books found") // asychronus call
 
         
         NYTAPIClient.getBooks(of: category) { (result) in

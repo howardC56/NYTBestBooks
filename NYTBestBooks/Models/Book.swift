@@ -23,13 +23,13 @@ struct SearchInfo: Codable & Equatable {
 }
 
 struct Book: Codable & Equatable {
-    let rank: Double
+    let rank: Int
     let description: String
     let title: String
     let author: String
     let bookImage: String
     let bookLinks: [BuyLink]
-    let weeksOnList: Double
+    let weeksOnList: Int
     
     private enum CodingKeys: String, CodingKey {
         case rank
