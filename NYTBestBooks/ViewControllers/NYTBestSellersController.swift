@@ -13,6 +13,7 @@ class NYTBestSellersController: UIViewController {
     
     private var dataPersistence: DataPersistence<Book>
     private let bestSellerView = NYTBestSellersView()
+    private var  userPreference:  UserPreference
     private var menuShowing = false
     
     private var category = "Paperback-Nonfiction" {
@@ -38,8 +39,9 @@ class NYTBestSellersController: UIViewController {
     }
     
     
-    init(dataPersistence: DataPersistence<Book>) {
+    init(dataPersistence: DataPersistence<Book>,  userPreference: UserPreference) {
         self.dataPersistence = dataPersistence
+        self.userPreference = userPreference
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -66,8 +68,9 @@ class NYTBestSellersController: UIViewController {
         bestSellerView.collectionView.register(NYTBestSellerViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
         bestSellerView.sideMenu.collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "categoryCell")
         
-        getBooks()
-        fetchCategory()
+        //getBooks()
+        fetchCategories()
+        getCategory()
     }
     
     @objc public func handleMenu(_ sender: UIBarButtonItem) {
@@ -91,8 +94,11 @@ class NYTBestSellersController: UIViewController {
         menuShowing = !menuShowing
     }
     
+    private func getCategory() {
+        category = userPreference.getSectionName() ?? "Animals"
+    }
     
-    private func fetchCategory() {
+    private func fetchCategories() {
         CategoryAPIClient.fetchCategories() { [weak self] (result) in
             switch result {
             case .failure(let appError):
@@ -187,7 +193,7 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
             // segue to detailVC
             
             let book = books[indexPath.row]
-            var detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
+            let detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
             
             present(detailVC, animated: true)
             

@@ -15,11 +15,21 @@ import UIKit
 class SettingsController: UIViewController {
     
     private let settingsView = SettingView()
+    private var  userPreference:  UserPreference
     
     override func loadView() {
           view = settingsView
          
       }
+    
+    init(userPreference: UserPreference) {
+        self.userPreference = userPreference
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
       
 
     override func viewDidLoad() {
@@ -70,6 +80,6 @@ extension SettingsController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = categories[row].listName
-//        UserDefaults.standard.set(categoryName, forKey: AppKey.appCategoryKey)
+        userPreference.setSectionName(categoryName.replacingOccurrences(of: " ", with: "-"))
     }
 }
