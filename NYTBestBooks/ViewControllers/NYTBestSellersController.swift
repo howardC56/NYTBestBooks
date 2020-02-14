@@ -173,9 +173,8 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
         if collectionView == bestSellerView.collectionView {
             // segue to detailVC
         } else if collectionView == bestSellerView.sideMenu.collectionView {
-            category = categories[indexPath.row].displayName // returns bad url because
-            print(category)
             
+            category = categories[indexPath.row].listName.replacingOccurrences(of: " ", with: "-")
         }
     }
 }
