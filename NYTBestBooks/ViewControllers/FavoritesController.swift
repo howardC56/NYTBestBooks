@@ -20,19 +20,11 @@ final class FavoritesController: UIViewController {
             if favoriteBooks.isEmpty {
                 favoriteView.collectionview.backgroundView = EmptyFavoritesView()
                 navigationItem.title = "Empty Gallery - Add Some Books"
-                emitBooks()
             } else {
                 favoriteView.collectionview.backgroundView = nil
                 navigationItem.title = "Favorited Books"
             }
         }
-    }
-    
-    private func emitBooks() {
-        let emitter = Emitter.get(with: #imageLiteral(resourceName: "leatherBook"))
-        emitter.emitterPosition = CGPoint(x: view.frame.width / 2, y: 5)
-        emitter.emitterSize = CGSize(width: view.frame.width, height: 2)
-        view.layer.addSublayer(emitter)
     }
     
     init(dataPersistence: DataPersistence<Book>) {
@@ -46,14 +38,13 @@ final class FavoritesController: UIViewController {
     }
     
     override func loadView() {
-        //        if favoriteBooks.isEmpty {
-        //        view = EmptyFavoritesView()
-        //        navigationItem.title = "Empty Gallery - Add Some Books"
-        //        emitBooks()
-        //        } else {
+                if favoriteBooks.isEmpty {
+                view = EmptyFavoritesView()
+                navigationItem.title = "Empty Gallery - Add Some Books"
+                } else {
         view = favoriteView
         title = "Favorites"
-        // }
+         }
     }
     
     //Remove after testing
@@ -79,7 +70,7 @@ final class FavoritesController: UIViewController {
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
         favoriteView.collectionview.register(FavoritesAltCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesAltCollectionViewCell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(changeStyles))
-        getBooks()
+        //getBooks()
     }
     
     @objc func changeStyles() {
