@@ -29,7 +29,7 @@ struct Book: Codable & Equatable {
     let author: String
     let bookImage: String
     let bookLinks: [BuyLink]
-    let weeksOnList: Double
+    let weeksOnList: Int
     
     private enum CodingKeys: String, CodingKey {
         case rank
