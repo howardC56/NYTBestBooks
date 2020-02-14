@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import DataPersistence
 
 class NYTBestSellersController: UIViewController {
+    private var dataPersistence: DataPersistence<Book>
     
     private let bestSellerView = NYTBestSellersView()
     private var menuShowing = false
@@ -32,6 +34,16 @@ class NYTBestSellersController: UIViewController {
                 self.bestSellerView.sideMenu.collectionView.reloadData()
             }
         }
+    }
+    
+    
+    init(dataPersistence: DataPersistence<Book>) {
+        self.dataPersistence = dataPersistence
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -172,6 +184,14 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
         
         if collectionView == bestSellerView.collectionView {
             // segue to detailVC
+            
+            let book = books[indexPath.row]
+            var detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
+            
+            present(detailVC, animated: true)
+            
+            
+            
         } else if collectionView == bestSellerView.sideMenu.collectionView {
             
             category = categories[indexPath.row].listName.replacingOccurrences(of: " ", with: "-")

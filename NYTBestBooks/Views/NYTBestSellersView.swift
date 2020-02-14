@@ -22,7 +22,6 @@ class NYTBestSellersView: UIView {
     }()
     
     public var sideMenu: SidebarView = {
-        
         let view = SidebarView()
         return view
     }()

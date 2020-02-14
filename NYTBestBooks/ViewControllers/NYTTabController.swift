@@ -19,7 +19,7 @@ class NYTTabController: UITabBarController {
     private let dataPersistence = DataPersistence<Book>(filename: "favoriteBooks.plist")
     
     private lazy var firstVC: UINavigationController = {
-    let navController = UINavigationController(rootViewController: NYTBestSellersController())
+    let navController = UINavigationController(rootViewController: NYTBestSellersController(dataPersistence: dataPersistence))
    navController.tabBarItem = UITabBarItem(title: "NYT Best Sellers",
                                             image: UIImage(systemName: "book"), selectedImage: UIImage(systemName: "book.fill"))
    return navController
