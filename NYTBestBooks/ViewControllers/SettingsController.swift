@@ -80,6 +80,10 @@ extension SettingsController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = categories[row].listName
-        userPreference.setSectionName(categoryName.replacingOccurrences(of: " ", with: "-"))
+        
+        userPreference.setCategoryName(categoryName.replacingOccurrences(of: " ", with: "-"))
+        //print(categoryName)
+        //print(categoryName.replacingOccurrences(of: " ", with: "-"))
+        
     }
 }

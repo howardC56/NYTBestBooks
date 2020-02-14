@@ -59,6 +59,8 @@ class NYTBestSellersController: UIViewController {
         navigationItem.leftBarButtonItem?.tintColor = .black
         view.backgroundColor = .tertiarySystemBackground
         
+        userPreference.delegate = self
+        
         bestSellerView.sideMenu.collectionView.dataSource = self
         bestSellerView.sideMenu.collectionView.delegate = self
         
@@ -95,7 +97,9 @@ class NYTBestSellersController: UIViewController {
     }
     
     private func getCategory() {
-        category = userPreference.getSectionName() ?? "Animals"
+        category = userPreference.getCategoryName() ?? "Animals"
+        
+        
     }
     
     private func fetchCategories() {
@@ -204,4 +208,12 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
             category = categories[indexPath.row].listName.replacingOccurrences(of: " ", with: "-")
         }
     }
+}
+
+extension NYTBestSellersController: UserPreferenceDelegate {
+    func didChangeCategory(_ userPreference: UserPreference, category: String) {
+        self.category = category
+    }
+    
+    
 }

@@ -24,7 +24,8 @@ class NYTTabController: UITabBarController {
     let navController = UINavigationController(rootViewController: NYTBestSellersController(dataPersistence: dataPersistence,  userPreference: userPreference))
    navController.tabBarItem = UITabBarItem(title: "NYT Best Sellers",
                                             image: UIImage(systemName: "book"), selectedImage: UIImage(systemName: "book.fill"))
-   return navController
+  
+        return navController
  }()
     
     private lazy var secondVC: UINavigationController = {

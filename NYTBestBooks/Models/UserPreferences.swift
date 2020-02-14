@@ -17,18 +17,18 @@ struct UserKey {
 }
 
 protocol UserPreferenceDelegate: AnyObject {
-  func didChangeNewsSection(_ userPreference: UserPreference, sectionName: String)
+  func didChangeCategory(_ userPreference: UserPreference, category: String)
 }
 
 final class UserPreference {
   weak var delegate: UserPreferenceDelegate?
   
-  public func getSectionName() -> String? {
+  public func getCategoryName() -> String? {
     return UserDefaults.standard.object(forKey: UserKey.categoryName) as? String
   }
   
-  public func setSectionName(_ sectionName: String) {
-    UserDefaults.standard.set(sectionName, forKey: UserKey.categoryName)
-    delegate?.didChangeNewsSection(self, sectionName: sectionName)
+  public func setCategoryName(_ categoryName: String) {
+    UserDefaults.standard.set(categoryName, forKey: UserKey.categoryName)
+    delegate?.didChangeCategory(self, category: categoryName)
   }
 }
