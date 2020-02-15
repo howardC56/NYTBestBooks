@@ -49,13 +49,18 @@ class NYTBestSellersController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        bestSellerView.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Current Best Sellers"
+        navigationItem.title = "Current Bestsellers"
         view = bestSellerView
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleMenu(_:)))
-        
+      
+
         navigationItem.leftBarButtonItem?.tintColor = .black
         view.backgroundColor = .tertiarySystemBackground
         

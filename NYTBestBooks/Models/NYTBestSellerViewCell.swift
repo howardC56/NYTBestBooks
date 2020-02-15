@@ -38,7 +38,8 @@ class NYTBestSellerViewCell: UICollectionViewCell {
     private lazy var rankLabel: UILabel = {
         let label = UILabel()
         label.text = "X"
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light)
+        label.textAlignment = .right
         return label
     }()
     
@@ -90,15 +91,21 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            rankLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            rankLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            rankLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 10),
+            rankLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             rankLabel.heightAnchor.constraint(equalToConstant: 30),
-            rankLabel.widthAnchor.constraint(equalTo: rankLabel.heightAnchor)
+            rankLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
         ])
     }
     
     public func configureCell(book: Book) {
-        rankLabel.text = book.rank.description
+        
+        if book.rank == 1 {
+            rankLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
+            rankLabel.text = "⭐️ Ranked #\(book.rank) ⭐️"
+        } else {
+            rankLabel.text = "Rank: #\(book.rank)"
+        }
         
         bookImage.getImage(with: book.bookImage) { [weak self] (result) in
             switch result {
