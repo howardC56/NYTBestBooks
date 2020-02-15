@@ -38,8 +38,11 @@ class NYTBestSellerViewCell: UICollectionViewCell {
     private lazy var rankLabel: UILabel = {
         let label = UILabel()
         label.text = "X"
-        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light)
-        label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.light)
+        label.textAlignment = .center
+        label.layer.borderWidth = 1
+        label.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        label.layer.cornerRadius = 8
         return label
     }()
     
@@ -92,16 +95,16 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             rankLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 10),
-            rankLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            rankLabel.heightAnchor.constraint(equalToConstant: 30),
-            rankLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
+            rankLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            rankLabel.heightAnchor.constraint(equalToConstant: 25),
+            rankLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3)
         ])
     }
     
     public func configureCell(book: Book) {
         
         if book.rank == 1 {
-            rankLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.medium)
+            rankLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
             rankLabel.text = "⭐️ Ranked #\(book.rank) ⭐️"
         } else {
             rankLabel.text = "Rank: #\(book.rank)"

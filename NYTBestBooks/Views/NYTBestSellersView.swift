@@ -34,6 +34,12 @@ class NYTBestSellersView: UIView {
         return view
     }()
     
+    private lazy var logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "nytimage2")
+        return image
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -49,6 +55,7 @@ class NYTBestSellersView: UIView {
         labelConstraints()
         collectionConstraints()
         sideMenuComstraints()
+        nytImageConstraints()
     }
 
     private func labelConstraints() {
@@ -59,7 +66,6 @@ class NYTBestSellersView: UIView {
             commentLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             commentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             commentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
-            //commentLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
@@ -90,4 +96,16 @@ class NYTBestSellersView: UIView {
         sideMenuWidth?.isActive = true
     }
 
+    private func nytImageConstraints() {
+        addSubview(logo)
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint.activate([
+            logo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            logo.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            logo.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07),
+            logo.widthAnchor.constraint(equalTo: logo.heightAnchor)
+        ])
+    }
 }
