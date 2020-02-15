@@ -11,13 +11,27 @@ import ImageKit
 
 class NYTBestSellerViewCell: UICollectionViewCell {
     
+    public lazy var outterView: UIView = {
+        let outerView = UIView()
+        outerView.backgroundColor = .white
+        outerView.layer.masksToBounds = false
+        outerView.clipsToBounds = false
+        outerView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) //UIColor.black.cgColor
+        outerView.layer.shadowOpacity = 0.8
+        outerView.layer.shadowOffset = CGSize.zero
+        outerView.layer.shadowRadius = 15
+        outerView.layer.cornerRadius = 8
+     
+        return outerView
+    }()
     
     public lazy var bookImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "book")
-        image.clipsToBounds = true
+        image.clipsToBounds = true //
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 10
+        image.layer.cornerRadius = 8
+   
         return image
     }()
     
@@ -25,7 +39,6 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "X"
         label.textAlignment = .center
-        // label.backgroundColor = .blue
         return label
     }()
     
@@ -40,9 +53,24 @@ class NYTBestSellerViewCell: UICollectionViewCell {
     }
     
     private func commonInit() {
+        outterViewConstraints()
         bookImageConstraints()
         rankLabelconstraints()
     }
+    
+    private func outterViewConstraints() {
+        addSubview(outterView)
+        outterView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            outterView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            outterView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            outterView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.90),
+            outterView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.70)
+        ])
+        
+    }
+
     
     private func bookImageConstraints() {
         addSubview(bookImage)
@@ -51,8 +79,8 @@ class NYTBestSellerViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             bookImage.centerYAnchor.constraint(equalTo: centerYAnchor),
             bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            bookImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.80),
-            bookImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.60)
+            bookImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.90),
+            bookImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.70)
         ])
         
     }

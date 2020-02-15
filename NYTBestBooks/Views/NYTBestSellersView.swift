@@ -16,7 +16,7 @@ class NYTBestSellersView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemGroupedBackground
+        cv.backgroundColor = .white
         cv.isPagingEnabled = true
         return cv
     }()

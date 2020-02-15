@@ -52,7 +52,7 @@ class NYTBestSellersController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Top Books"
+        navigationItem.title = "Current Best Sellers"
         view = bestSellerView
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleMenu(_:)))
         
