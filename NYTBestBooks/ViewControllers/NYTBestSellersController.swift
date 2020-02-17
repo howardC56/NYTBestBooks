@@ -55,14 +55,16 @@ class NYTBestSellersController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view = bestSellerView
+        view.backgroundColor = .tertiarySystemBackground
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Current Bestsellers"
-        view = bestSellerView
+       
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleMenu(_:)))
-      
-
         navigationItem.leftBarButtonItem?.tintColor = .black
-        view.backgroundColor = .tertiarySystemBackground
+        
         
         userPreference.delegate = self
         
@@ -75,7 +77,6 @@ class NYTBestSellersController: UIViewController {
         bestSellerView.collectionView.register(NYTBestSellerViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
         bestSellerView.sideMenu.collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "categoryCell")
         
-        //getBooks()
         fetchCategories()
         getCategory()
     }
@@ -102,9 +103,7 @@ class NYTBestSellersController: UIViewController {
     }
     
     private func getCategory() {
-        category = userPreference.getCategoryName() ?? "Animals"
-        
-        
+        category = userPreference.getCategoryName() ?? "Paperback-Nonfiction"
     }
     
     private func fetchCategories() {
