@@ -45,18 +45,18 @@ final class FavoritesController: UIViewController {
     }
     
     //Remove after testing
-    private func getBooks() {
-        NYTAPIClient.getBooks(of: "Manga") { [weak self] (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let appError):
-                    print("error getting books: \(appError)")
-                case .success(let books):
-                    self?.favoriteBooks = books
-                }
-            }
-        }
-    }
+//    private func getBooks() {
+//        NYTAPIClient.getBooks(of: "Manga") { [weak self] (result) in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .failure(let appError):
+//                    print("error getting books: \(appError)")
+//                case .success(let books):
+//                    self?.favoriteBooks = books
+//                }
+//            }
+//        }
+//    }
     
     lazy private var changeLookButton: UIBarButtonItem = {
         [unowned self] in
@@ -66,13 +66,13 @@ final class FavoritesController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        //getFavoriteBooks()
+        getFavoriteBooks()
         favoriteView.collectionview.delegate = self
         favoriteView.collectionview.dataSource = self
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
         favoriteView.collectionview.register(FavoritesAltCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesAltCollectionViewCell")
         navigationItem.rightBarButtonItem = changeLookButton
-        getBooks()
+        //getBooks()
     }
     
     @objc func changeStyles() {
@@ -146,9 +146,10 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
 
 extension FavoritesController: FavoritesViewCellDelegate {
     func didPressMoreOptionsButton(cell: FavoritesViewCell, book: Book) {
+        DispatchQueue.main.async { [weak self] in
         let alertController = UIAlertController(title: "Choose", message: "Book's Destiny", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let delete = UIAlertAction(title: "Throw Out", style: .destructive) { [weak self] (alertAction) in
+        let delete = UIAlertAction(title: "Throw Out", style: .destructive) { (alertAction) in
             self?.deleteBook(book)
         }
         let image = UIImage(systemName: "trash")
@@ -158,11 +159,12 @@ extension FavoritesController: FavoritesViewCellDelegate {
         alertController.addAction(cancelAction)
         alertController.addAction(delete)
         if let popoverPresentationController = alertController.popoverPresentationController {
-            popoverPresentationController.sourceView = self.view
-            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverPresentationController.sourceView = self?.view
+            popoverPresentationController.sourceRect = CGRect(x: self?.view.bounds.midX ?? 0, y: self?.view.bounds.midY ?? 0, width: 0, height: 0)
             popoverPresentationController.permittedArrowDirections = []
         }
-        present(alertController,animated: true)
+            self?.present(alertController,animated: true)
+    }
     }
     
     private func deleteBook(_ book: Book) {
