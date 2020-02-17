@@ -46,7 +46,7 @@ final class FavoritesController: UIViewController {
     
     //Remove after testing
     private func getBooks() {
-        NYTAPIClient.getBooks(of: "Business-Books") { [weak self] (result) in
+        NYTAPIClient.getBooks(of: "Manga") { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let appError):
@@ -99,7 +99,6 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
         let saved = favoriteBooks[indexPath.row]
         if altCell == true {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesViewCell", for: indexPath) as? FavoritesViewCell else { fatalError() }
-            cell.backgroundColor = .systemBackground
             cell.configureCell(saved)
             cell.delegate = self
             return cell

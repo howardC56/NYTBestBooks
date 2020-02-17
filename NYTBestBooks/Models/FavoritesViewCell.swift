@@ -33,17 +33,9 @@ final class FavoritesViewCell: UICollectionViewCell {
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.layer.borderWidth = 0.5
+        label.layer.cornerRadius = 10
         label.layer.borderColor = UIColor.black.cgColor
         label.text = "SimsSImsSimsSimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSims SimsSImsSimsSimsSImsSimsSimsSImsSimsSimsSImsSims"
-        return label
-    }()
-    
-    public lazy var rankTextLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
-        label.text = "Rank: "
         return label
     }()
     
@@ -51,6 +43,7 @@ final class FavoritesViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
         label.numberOfLines = 0
         label.text = "Test"
         return label
@@ -60,7 +53,7 @@ final class FavoritesViewCell: UICollectionViewCell {
         let button = UIButton(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
         button.backgroundColor = .clear
         button.layer.cornerRadius = 20
-        button.setBackgroundImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "xmark.circle"), for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(moreButtonPressed), for: .touchUpInside)
         return button
@@ -83,7 +76,6 @@ final class FavoritesViewCell: UICollectionViewCell {
     func configureCell(_ book: Book) {
         currentBook = book
         titleLabel.text = book.title
-        rankTextLabel.text = "Rank: \(book.rank) "
         if book.description == "" {
             descriptionLabel.text = "New York Times Has No Words For This!"
         } else {
@@ -105,7 +97,6 @@ final class FavoritesViewCell: UICollectionViewCell {
     private func commonSetup() {
         imageViewConstraints()
         deleteButtonConstraints()
-        rankLabelConstraints()
         titleLabelConstraints()
         descriptionLabelConstraints()
         layer.cornerRadius = 10
@@ -119,7 +110,8 @@ final class FavoritesViewCell: UICollectionViewCell {
     
     private func imageViewConstraints() {
         addSubview(imageView)
-        imageView.anchor(top: topAnchor, left: leftAnchor, paddingTop: 10, paddingLeft: 10, width: 150, height: 250)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([imageView.centerXAnchor.constraint(equalTo: centerXAnchor), imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10), imageView.widthAnchor.constraint(equalToConstant: 150), imageView.heightAnchor.constraint(equalToConstant: 250)])
     }
     
     private func deleteButtonConstraints() {
@@ -127,19 +119,15 @@ final class FavoritesViewCell: UICollectionViewCell {
         moreOptionsButton.anchor(top: imageView.topAnchor, right: rightAnchor, paddingRight: 10, width: 24, height: 24)
     }
     
-    private func rankLabelConstraints() {
-        addSubview(rankTextLabel)
-        rankTextLabel.anchor(top: moreOptionsButton.bottomAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 30, paddingLeft: 12, paddingRight: 10, height: 16)
-    }
     
     private func titleLabelConstraints() {
         addSubview(titleLabel)
-        titleLabel.anchor(top: rankTextLabel.bottomAnchor, left: imageView.rightAnchor, right: rightAnchor, paddingTop: 25, paddingLeft: 12, paddingRight: 10, height: 20)
+        titleLabel.anchor(top: imageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 25, paddingLeft: 12, paddingRight: 10, height: 20)
     }
     
     private func descriptionLabelConstraints() {
         addSubview(descriptionLabel)
-        descriptionLabel.anchor(top: imageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10)
+        descriptionLabel.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10)
     }
     
     
