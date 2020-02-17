@@ -18,12 +18,14 @@ class NYTTabController: UITabBarController {
     }
 
     private let dataPersistence = DataPersistence<Book>(filename: "favoriteBooks.plist")
+    private var userPreference = UserPreference()
     
     private lazy var firstVC: UINavigationController = {
-    let navController = UINavigationController(rootViewController: NYTBestSellersController(dataPersistence: dataPersistence))
+    let navController = UINavigationController(rootViewController: NYTBestSellersController(dataPersistence: dataPersistence,  userPreference: userPreference))
    navController.tabBarItem = UITabBarItem(title: "NYT Best Sellers",
                                             image: UIImage(systemName: "book"), selectedImage: UIImage(systemName: "book.fill"))
-   return navController
+  
+        return navController
  }()
     
     private lazy var secondVC: UINavigationController = {
@@ -34,7 +36,7 @@ class NYTTabController: UITabBarController {
     }()
     
     private lazy var thirdVC: UIViewController = {
-       let viewController = SettingsController()
+       let viewController = SettingsController(userPreference: userPreference)
       viewController.tabBarItem = UITabBarItem(title: "Settings",
                                                image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
       return viewController
