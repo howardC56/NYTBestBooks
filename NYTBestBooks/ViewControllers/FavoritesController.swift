@@ -151,6 +151,8 @@ extension FavoritesController: FavoritesViewCellDelegate {
         let delete = UIAlertAction(title: "Throw Out", style: .destructive) { [weak self] (alertAction) in
             self?.deleteBook(book)
         }
+        let image = UIImage(systemName: "trash")
+        delete.setValue(image, forKey: "image")
         alertController.addAction(cancelAction)
         alertController.addAction(delete)
         if let popoverPresentationController = alertController.popoverPresentationController {
