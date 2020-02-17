@@ -43,7 +43,7 @@ final class FavoritesViewCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 15)
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
-        label.text = "Rank: 2 "
+        label.text = "Rank: "
         return label
     }()
     

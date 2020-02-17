@@ -20,9 +20,11 @@ final class FavoritesController: UIViewController {
             if favoriteBooks.isEmpty {
                 favoriteView.collectionview.backgroundView = EmptyFavoritesView()
                 navigationItem.title = "Empty Gallery - Add Some Books"
+                changeLookButton.tintColor = UIColor.black.withAlphaComponent(0)
             } else {
                 favoriteView.collectionview.backgroundView = nil
                 navigationItem.title = "Favorited Books"
+                changeLookButton.tintColor = UIColor.black.withAlphaComponent(1)
             }
         }
     }
@@ -38,39 +40,39 @@ final class FavoritesController: UIViewController {
     }
     
     override func loadView() {
-//                if favoriteBooks.isEmpty {
-//                view = EmptyFavoritesView()
-//                navigationItem.title = "Empty Gallery - Add Some Books"
-//                } else {
         view = favoriteView
         title = "Favorites"
-         //}
     }
     
     //Remove after testing
-//    private func getBooks() {
-//        NYTAPIClient.getBooks(of: "Business-Books") { [weak self] (result) in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .failure(let appError):
-//                    print("error getting books: \(appError)")
-//                case .success(let books):
-//                    self?.favoriteBooks = books
-//                }
-//            }
-//        }
-//    }
+    private func getBooks() {
+        NYTAPIClient.getBooks(of: "Business-Books") { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let appError):
+                    print("error getting books: \(appError)")
+                case .success(let books):
+                    self?.favoriteBooks = books
+                }
+            }
+        }
+    }
+    
+    lazy private var changeLookButton: UIBarButtonItem = {
+        [unowned self] in
+        return UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(changeStyles))
+        }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        getFavoriteBooks()
+        //getFavoriteBooks()
         favoriteView.collectionview.delegate = self
         favoriteView.collectionview.dataSource = self
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
         favoriteView.collectionview.register(FavoritesAltCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesAltCollectionViewCell")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(changeStyles))
-        //getBooks()
+        navigationItem.rightBarButtonItem = changeLookButton
+        getBooks()
     }
     
     @objc func changeStyles() {
@@ -91,7 +93,6 @@ final class FavoritesController: UIViewController {
 extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         favoriteBooks.count
-        //return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,8 +140,6 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
         if altCell == true {
             let selected = favoriteBooks[indexPath.row]
             let detailVC = BookDetailController(dataPersistence: dataPersistence, book: selected)
-            //detailVC.article = favoriteBooks[indexPath.row]
-            //detailVC.dataPersistence = dataPersistence
             present(detailVC, animated: true)
         }
     }
