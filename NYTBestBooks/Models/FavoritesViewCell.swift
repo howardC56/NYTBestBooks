@@ -111,7 +111,7 @@ final class FavoritesViewCell: UICollectionViewCell {
     private func imageViewConstraints() {
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([imageView.centerXAnchor.constraint(equalTo: centerXAnchor), imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10), imageView.widthAnchor.constraint(equalToConstant: 150), imageView.heightAnchor.constraint(equalToConstant: 250)])
+        NSLayoutConstraint.activate([imageView.centerXAnchor.constraint(equalTo: centerXAnchor), imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10), imageView.widthAnchor.constraint(equalToConstant: 200), imageView.heightAnchor.constraint(equalToConstant: 333)])
     }
     
     private func deleteButtonConstraints() {
