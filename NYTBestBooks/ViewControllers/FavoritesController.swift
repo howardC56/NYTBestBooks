@@ -153,6 +153,8 @@ extension FavoritesController: FavoritesViewCellDelegate {
         }
         let image = UIImage(systemName: "trash")
         delete.setValue(image, forKey: "image")
+        let bigImage = UIImage(named: "nyLibrary")
+        alertController.addImage(image: bigImage!)
         alertController.addAction(cancelAction)
         alertController.addAction(delete)
         if let popoverPresentationController = alertController.popoverPresentationController {
