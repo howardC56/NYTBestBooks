@@ -11,7 +11,7 @@ import NetworkHelper
 
 struct CategoryAPIClient {
   static func fetchCategories(completion: @escaping (Result<[Categories], AppError>) -> ()) {
-    let appKey = "DL38rBCzQvAfGMxmcioFQldZ8upeEhQf"
+    let appKey = ""
     let endpointURLString = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(appKey)"
     guard let url = URL(string: endpointURLString) else {
       completion(.failure(.badURL(endpointURLString)))
