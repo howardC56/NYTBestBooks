@@ -69,12 +69,23 @@ class BookDetailController: UIViewController {
                 }
             }
         }
-        detailView.titleLabel.text = book.title
+        detailView.titleLabel.text = book.title.capitalized
         detailView.authorLabel.text = "by \(book.author) "
-        detailView.descriptionLabel.text = book.description
-        detailView.rankLabel.text = "\(book.rank)"
-        detailView.weeksOnListLabel.text = "Weeks on List: \(book.weeksOnList)"
+        detailView.descriptionLabel2.text = book.description
+        detailView.rankLabel.text = " Ranked: # \(book.rank) "
+        if
+            dataPersistence.hasItemBeenSaved(book) {
+            
+        } else {
+             detailView.favoritesLabel.text = "Add to Favorites"
+        }
         
+        
+        if book.weeksOnList <= 1 {
+            detailView.weeksOnListLabel.text = "New this week!".uppercased()
+        } else {
+        detailView.weeksOnListLabel.text = "\(book.weeksOnList) weeks on the list ".uppercased()
+        }
         
         
         
@@ -113,9 +124,11 @@ class BookDetailController: UIViewController {
             toolBar.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
             toolBar.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             toolBar.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
-            toolBar.heightAnchor.constraint(equalToConstant: 60)
+            toolBar.heightAnchor.constraint(equalToConstant: 70)
         ])
         toolBar.setItems(items, animated: true)
+        
+
     }
     
     @objc func saveBookButtonPressed(_ sender: UIBarButtonItem) {
@@ -130,7 +143,7 @@ class BookDetailController: UIViewController {
             if let index = try? dataPersistence.loadItems().firstIndex(of: book) {
                 do {
                     try dataPersistence.deleteItem(at: index)
-                    
+                    detailView.favoritesLabel.text = "Add to Favorites"
                 } catch {
                     print("error deleting book: \(error)")
                 }
@@ -139,6 +152,7 @@ class BookDetailController: UIViewController {
             do {
                 detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
                 try dataPersistence.createItem(book)
+                detailView.favoritesLabel.text = "Remove from Favorites"
                 
             } catch {
                 print("error saving book: \(error)")
@@ -151,12 +165,13 @@ class BookDetailController: UIViewController {
     private func updateFavoriteStar(_ book: Book) {
         if dataPersistence.hasItemBeenSaved(book) {
             detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-
-                    }
+            detailView.favoritesLabel.text = "Remove from Favorites"
+            
+}
         else {
             
+            detailView.favoritesLabel.text = "Add to Favorites"
             detailView.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            
         }
     }
     
