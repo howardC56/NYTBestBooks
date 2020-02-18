@@ -34,6 +34,20 @@ class BookDetailView: UIView {
         return imageView
     }()
     
+    public lazy var outerView: UIView = {
+          let outerView = UIView()
+          outerView.backgroundColor = .white
+          outerView.layer.masksToBounds = false
+          outerView.clipsToBounds = false
+          outerView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) //UIColor.black.cgColor
+          outerView.layer.shadowOpacity = 0.8
+          outerView.layer.shadowOffset = CGSize.zero
+          outerView.layer.shadowRadius = 15
+          
+       
+          return outerView
+      }()
+    
     public lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Title"
@@ -108,6 +122,7 @@ class BookDetailView: UIView {
         
         setupFavoriteButton()
         setupFavoritesLabel()
+        setupOutterView()
         setupImageView()
         setupTitleLabel()
         
@@ -142,7 +157,16 @@ class BookDetailView: UIView {
         ])
     }
    
-    
+    private func setupOutterView() {
+        addSubview(outerView)
+        outerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                 outerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 70),
+                      outerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+                      outerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.40),
+                      outerView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.50)
+        ])
+    }
     
     private func setupImageView() {
            addSubview(bookImage)
