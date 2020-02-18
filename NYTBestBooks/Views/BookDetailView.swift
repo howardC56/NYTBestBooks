@@ -10,10 +10,14 @@ import UIKit
 
 class BookDetailView: UIView {
     
+   
+    
     public lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "star"), for: .normal)
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.tintColor = .black
         return button
+       
     }()
 
     public lazy var bookImage: UIImageView = {
@@ -24,8 +28,8 @@ class BookDetailView: UIView {
     
     public lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Author"
-        label.numberOfLines = 2
+        label.text = "Title"
+        label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         return label
     } ()
@@ -59,8 +63,8 @@ class BookDetailView: UIView {
     
     public lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-            label.numberOfLines = 0
-            label.text = "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description "
+            label.numberOfLines = 5
+            label.text = "Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription"
         // Just wanna see what it looks like with a description with one line
             
             return label
@@ -82,8 +86,8 @@ class BookDetailView: UIView {
     
     private func commonInit() {
         setupFavoriteButton()
-        setupImageView()
         setupTitleLabel()
+        setupImageView()
         setupAuthorLabel()
         setupRankLabel()
         setupWeeksOnListLabel()
@@ -96,42 +100,45 @@ class BookDetailView: UIView {
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             favoriteButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
+            favoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             favoriteButton.heightAnchor.constraint(equalToConstant: 30),
             favoriteButton.widthAnchor.constraint(equalToConstant: 30)
         ])
     }
     
+    private func setupTitleLabel() {
+           
+           addSubview(titleLabel)
+           titleLabel.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40)
+            ])
+           
+       }
     private func setupImageView() {
         addSubview(bookImage)
         bookImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            bookImage.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            bookImage.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            bookImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             //TODO: Use multiplier to set height and width so that the size of the book changes with the size of the device.
             bookImage.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.40),
-            bookImage.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.40)
+            bookImage.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.50)
         ])
     }
     
-    private func setupTitleLabel() {
-        
-        addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)])
-        
-    }
+   
     
     private func setupAuthorLabel() {
         addSubview(authorLabel)
        authorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            authorLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)])
+            authorLabel.topAnchor.constraint(equalTo: favoriteButton.bottomAnchor, constant: 50),
+            authorLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 10),
+            authorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        ])
         
         
     }
@@ -140,8 +147,8 @@ class BookDetailView: UIView {
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             rankLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 8),
-            rankLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            rankLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)])
+            rankLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 10),
+            rankLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)])
     }
     
     private func setupWeeksOnListLabel() {
@@ -149,19 +156,24 @@ class BookDetailView: UIView {
         weeksOnListLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             weeksOnListLabel.topAnchor.constraint(equalTo: rankLabel.bottomAnchor, constant: 8),
-            weeksOnListLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            weeksOnListLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)])
+            weeksOnListLabel.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 10),
+            weeksOnListLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        ])
     }
     
     private func setupDescriptionLabel() {
         addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 15),
-            descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: bookImage.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor)
+            descriptionLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ])
     }
+    
+    
 
+    
 }

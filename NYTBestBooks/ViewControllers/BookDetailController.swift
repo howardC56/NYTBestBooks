@@ -8,13 +8,16 @@
 
 import UIKit
 import DataPersistence
+import ImageKit
 
+// TODO: Ensure it doesn't save duplicates
+//TODO: toggle the function saved = filled star, unsave = unfilled star
 class BookDetailController: UIViewController {
     
     private var detailView = BookDetailView()
     
-    private var book: Book
-    private var dataPersistence: DataPersistence<Book>
+    public var book: Book
+    public var dataPersistence: DataPersistence<Book>
     let toolBar = UIToolbar()
     
     
@@ -42,16 +45,41 @@ class BookDetailController: UIViewController {
         super.viewDidLoad()
         
         setupToolBar()
+        updateUI()
+        detailView.favoriteButton.addTarget(self, action: #selector(saveBookButtonPressed(_:)), for: .touchUpInside)
+        
+      updateFavoriteStar(book)
+               
     }
     
     
     public func updateUI() {
-        // TODO: Using the "Book" that's been persisted
-        // set up the image for the book
-        // set up the title of the book
-        // set up the description
+        
+       
+        detailView.bookImage.getImage(with: book.bookImage) { [weak self] (result) in
+            DispatchQueue.main.async {
+            switch result {
+            case .failure(let appError):
+                print("failure: \(appError)")
+                self?.detailView.bookImage.image = UIImage(named: "book")
+            case .success(let image):
+                    self!.detailView.bookImage.image = image
+                }
+            }
+        }
+        detailView.titleLabel.text = book.title
+        detailView.authorLabel.text = "by \(book.author) "
+        detailView.descriptionLabel.text = book.description
+        detailView.rankLabel.text = "\(book.rank)"
+        detailView.weeksOnListLabel.text = "Weeks on List: \(book.weeksOnList)"
+        
+      
+    
+        
     }
     
+    
+    //
     public func setupToolBar() {
         view.addSubview(toolBar)
         
@@ -88,7 +116,50 @@ class BookDetailController: UIViewController {
         toolBar.setItems(items, animated: true)
     }
     
+    @objc func saveBookButtonPressed(_ sender: UIBarButtonItem) {
+        
+
+     if dataPersistence.hasItemBeenSaved(book) {
+
+       
+        
+        detailView.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+
+            if let index = try? dataPersistence.loadItems().firstIndex(of: book) {
+                do {
+                    try dataPersistence.deleteItem(at: index)
+
+                } catch {
+                    print("error deleting book: \(error)")
+                }
+            }
+        } else {
+            do {
+               detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                try dataPersistence.createItem(book)
+                
+            } catch {
+                print("error saving book: \(error)")
+            }
+        }
+
+        
+    }
+    
+    private func updateFavoriteStar(_ book: Book) {
+        if dataPersistence.hasItemBeenSaved(book) {
+            detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            isSaved = true
+        }
+        else {
+            
+            detailView.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            isSaved = false
+        }
+    }
+   
     
     
 }
+
 
