@@ -44,19 +44,6 @@ final class FavoritesController: UIViewController {
         title = "Favorites"
     }
     
-    //Remove after testing
-//    private func getBooks() {
-//        NYTAPIClient.getBooks(of: "Manga") { [weak self] (result) in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .failure(let appError):
-//                    print("error getting books: \(appError)")
-//                case .success(let books):
-//                    self?.favoriteBooks = books
-//                }
-//            }
-//        }
-//    }
     
     lazy private var changeLookButton: UIBarButtonItem = {
         [unowned self] in
@@ -72,7 +59,6 @@ final class FavoritesController: UIViewController {
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
         favoriteView.collectionview.register(FavoritesAltCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesAltCollectionViewCell")
         navigationItem.rightBarButtonItem = changeLookButton
-        //getBooks()
     }
     
     @objc func changeStyles() {
