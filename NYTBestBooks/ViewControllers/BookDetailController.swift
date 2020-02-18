@@ -9,6 +9,7 @@
 import UIKit
 import DataPersistence
 import ImageKit
+import SafariServices
 
 // TODO: Ensure it doesn't save duplicates
 //TODO: toggle the function saved = filled star, unsave = unfilled star
@@ -19,6 +20,7 @@ class BookDetailController: UIViewController {
     public var book: Book
     public var dataPersistence: DataPersistence<Book>
     let toolBar = UIToolbar()
+    var isSaved = true
     
     
     init(dataPersistence: DataPersistence<Book>, book: Book) {
@@ -157,6 +159,13 @@ class BookDetailController: UIViewController {
             isSaved = false
         }
     }
+    
+      @objc private func amazonSearch(_ sender: UIBarButtonItem) {
+
+        let urlString = URL(string: book.bookLinks[0].url)!
+            let safariVC = SFSafariViewController(url: urlString)
+            present(safariVC, animated: true, completion: nil)
+        }
    
     
     
