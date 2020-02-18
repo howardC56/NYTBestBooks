@@ -29,8 +29,8 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
     }
     
     private lazy var bookButton: UIButton = {
-         let button = UIButton(frame: CGRect(x: 20, y: 20, width: 100, height: 100))
-        button.backgroundColor = .clear
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: self.frame.size.width / 2 , height: self.frame.size.height / 2))
+        button.imageView?.clipsToBounds = true
         button.addTarget(self, action: #selector(pressedBook), for: .touchUpInside)
          return button
      }()
@@ -54,6 +54,12 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
                         self?.bookButton.setImage(UIImage(systemName: "exclamationmark.octagon"), for: .normal)
                        case .success(let image):
                         self?.bookButton.setImage(image, for: .normal)
+                        self?.bookButton.layer.cornerRadius = 10
+                        self?.bookButton.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor
+                        self?.bookButton.layer.shadowRadius = 10
+                        self?.bookButton.layer.shadowOffset = .zero
+                        self?.bookButton.layer.shadowOpacity = 0.75
+                        self?.bookButton.layer.shadowPath = UIBezierPath(rect: self?.bookButton.imageView?.frame ?? CGRect(x: 0, y: 0, width: 0, height: 0)).cgPath
                        }
                    }
                }
@@ -62,7 +68,10 @@ final class FavoritesAltCollectionViewCell: UICollectionViewCell {
     private func bookButtonConstraints() {
         addSubview(bookButton)
         bookButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([bookButton.centerYAnchor.constraint(equalTo: centerYAnchor), bookButton.centerXAnchor.constraint(equalTo: centerXAnchor), bookButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75), bookButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75)])
+        NSLayoutConstraint.activate([bookButton.centerYAnchor.constraint(equalTo: centerYAnchor), bookButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
     
+    
 }
+
