@@ -12,11 +12,19 @@ class NYTBestSellersView: UIView {
     
     public var sideMenuWidth: NSLayoutConstraint?
     
+    private lazy var commentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Explore the books that are top of the charts."
+        label.font = UIFont(name: "PingFang HK", size: 15)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
     public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemGroupedBackground
+        cv.backgroundColor = .white
         cv.isPagingEnabled = true
         return cv
     }()
@@ -24,6 +32,12 @@ class NYTBestSellersView: UIView {
     public var sideMenu: SidebarView = {
         let view = SidebarView()
         return view
+    }()
+    
+    private lazy var logo: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "nytimage2")
+        return image
     }()
     
     
@@ -38,16 +52,29 @@ class NYTBestSellersView: UIView {
     }
     
     private func commonInit() {
+        labelConstraints()
         collectionConstraints()
         sideMenuComstraints()
+        nytImageConstraints()
     }
 
+    private func labelConstraints() {
+        addSubview(commentLabel)
+        commentLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            commentLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            commentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            commentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
+        ])
+    }
+    
     private func collectionConstraints() {
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            collectionView.topAnchor.constraint(equalTo: commentLabel.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.60)
@@ -69,4 +96,16 @@ class NYTBestSellersView: UIView {
         sideMenuWidth?.isActive = true
     }
 
+    private func nytImageConstraints() {
+        addSubview(logo)
+        logo.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint.activate([
+            logo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            logo.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15),
+            logo.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.07),
+            logo.widthAnchor.constraint(equalTo: logo.heightAnchor)
+        ])
+    }
 }

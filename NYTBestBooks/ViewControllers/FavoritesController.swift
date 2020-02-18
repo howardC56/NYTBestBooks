@@ -20,9 +20,11 @@ final class FavoritesController: UIViewController {
             if favoriteBooks.isEmpty {
                 favoriteView.collectionview.backgroundView = EmptyFavoritesView()
                 navigationItem.title = "Empty Gallery - Add Some Books"
+                changeLookButton.tintColor = UIColor.black.withAlphaComponent(0)
             } else {
                 favoriteView.collectionview.backgroundView = nil
                 navigationItem.title = "Favorited Books"
+                changeLookButton.tintColor = UIColor.black.withAlphaComponent(1)
             }
         }
     }
@@ -38,18 +40,13 @@ final class FavoritesController: UIViewController {
     }
     
     override func loadView() {
-//                if favoriteBooks.isEmpty {
-//                view = EmptyFavoritesView()
-//                navigationItem.title = "Empty Gallery - Add Some Books"
-//                } else {
         view = favoriteView
         title = "Favorites"
-         //}
     }
     
     //Remove after testing
 //    private func getBooks() {
-//        NYTAPIClient.getBooks(of: "Business-Books") { [weak self] (result) in
+//        NYTAPIClient.getBooks(of: "Manga") { [weak self] (result) in
 //            DispatchQueue.main.async {
 //                switch result {
 //                case .failure(let appError):
@@ -61,6 +58,11 @@ final class FavoritesController: UIViewController {
 //        }
 //    }
     
+    lazy private var changeLookButton: UIBarButtonItem = {
+        [unowned self] in
+        return UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(changeStyles))
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -69,7 +71,7 @@ final class FavoritesController: UIViewController {
         favoriteView.collectionview.dataSource = self
         favoriteView.collectionview.register(FavoritesViewCell.self, forCellWithReuseIdentifier: "FavoritesViewCell")
         favoriteView.collectionview.register(FavoritesAltCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesAltCollectionViewCell")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "wand.and.stars"), style: .plain, target: self, action: #selector(changeStyles))
+        navigationItem.rightBarButtonItem = changeLookButton
         //getBooks()
     }
     
@@ -91,14 +93,12 @@ final class FavoritesController: UIViewController {
 extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         favoriteBooks.count
-        //return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved = favoriteBooks[indexPath.row]
         if altCell == true {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesViewCell", for: indexPath) as? FavoritesViewCell else { fatalError() }
-            cell.backgroundColor = .systemBackground
             cell.configureCell(saved)
             cell.delegate = self
             return cell
@@ -139,8 +139,6 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
         if altCell == true {
             let selected = favoriteBooks[indexPath.row]
             let detailVC = BookDetailController(dataPersistence: dataPersistence, book: selected)
-            //detailVC.article = favoriteBooks[indexPath.row]
-            //detailVC.dataPersistence = dataPersistence
             present(detailVC, animated: true)
         }
     }
@@ -148,19 +146,25 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout, UICollectionV
 
 extension FavoritesController: FavoritesViewCellDelegate {
     func didPressMoreOptionsButton(cell: FavoritesViewCell, book: Book) {
+        DispatchQueue.main.async { [weak self] in
         let alertController = UIAlertController(title: "Choose", message: "Book's Destiny", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let delete = UIAlertAction(title: "Throw Out", style: .destructive) { [weak self] (alertAction) in
+        let delete = UIAlertAction(title: "Throw Out", style: .destructive) { (alertAction) in
             self?.deleteBook(book)
         }
+        let image = UIImage(systemName: "trash")
+        delete.setValue(image, forKey: "image")
+        let bigImage = UIImage(named: "nyLibrary")
+        alertController.addImage(image: bigImage!)
         alertController.addAction(cancelAction)
         alertController.addAction(delete)
         if let popoverPresentationController = alertController.popoverPresentationController {
-            popoverPresentationController.sourceView = self.view
-            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverPresentationController.sourceView = self?.view
+            popoverPresentationController.sourceRect = CGRect(x: self?.view.bounds.midX ?? 0, y: self?.view.bounds.midY ?? 0, width: 0, height: 0)
             popoverPresentationController.permittedArrowDirections = []
         }
-        present(alertController,animated: true)
+            self?.present(alertController,animated: true)
+    }
     }
     
     private func deleteBook(_ book: Book) {

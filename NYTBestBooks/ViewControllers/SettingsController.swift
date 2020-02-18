@@ -8,18 +8,25 @@
 
 import UIKit
 
-//struct AppKey {
-//    static let appCategoryKey = "app categories"
-//}
 
 class SettingsController: UIViewController {
     
     private let settingsView = SettingView()
+    private var  userPreference:  UserPreference
     
     override func loadView() {
           view = settingsView
          
       }
+    
+    init(userPreference: UserPreference) {
+        self.userPreference = userPreference
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
       
 
     override func viewDidLoad() {
@@ -31,7 +38,18 @@ class SettingsController: UIViewController {
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
         fetchCategory()
+    
+        //setPicker()
+        
     }
+    private func setPicker() {
+        let index = userPreference.getCategoryRow() ?? 0
+        DispatchQueue.main.async {
+            self.settingsView.pickerView.selectRow(index, inComponent: 0, animated: true)
+        }
+    }
+
+       
     
     private var categories = [Categories]() {
         didSet {
@@ -48,6 +66,7 @@ class SettingsController: UIViewController {
                 print("error fetching categories: \(appError)")
             case .success(let categories):
                 self?.categories = categories
+                self?.setPicker()
             }
         }
     }
@@ -70,6 +89,8 @@ extension SettingsController: UIPickerViewDelegate {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = categories[row].listName
-//        UserDefaults.standard.set(categoryName, forKey: AppKey.appCategoryKey)
+        
+        userPreference.setCategoryName(categoryName.replacingOccurrences(of: " ", with: "-"), row: row)
+        
     }
 }

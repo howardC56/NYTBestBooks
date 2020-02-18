@@ -13,6 +13,7 @@ class NYTBestSellersController: UIViewController {
     
     private var dataPersistence: DataPersistence<Book>
     private let bestSellerView = NYTBestSellersView()
+    private var  userPreference:  UserPreference
     private var menuShowing = false
     
     private var category = "Paperback-Nonfiction" {
@@ -38,8 +39,9 @@ class NYTBestSellersController: UIViewController {
     }
     
     
-    init(dataPersistence: DataPersistence<Book>) {
+    init(dataPersistence: DataPersistence<Book>,  userPreference: UserPreference) {
         self.dataPersistence = dataPersistence
+        self.userPreference = userPreference
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,15 +49,22 @@ class NYTBestSellersController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        bestSellerView.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Top Books"
+        navigationItem.title = "Current Bestsellers"
         view = bestSellerView
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleMenu(_:)))
-        
+      
+
         navigationItem.leftBarButtonItem?.tintColor = .black
         view.backgroundColor = .tertiarySystemBackground
+        
+        userPreference.delegate = self
         
         bestSellerView.sideMenu.collectionView.dataSource = self
         bestSellerView.sideMenu.collectionView.delegate = self
@@ -66,8 +75,9 @@ class NYTBestSellersController: UIViewController {
         bestSellerView.collectionView.register(NYTBestSellerViewCell.self, forCellWithReuseIdentifier: "bestSellerCell")
         bestSellerView.sideMenu.collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: "categoryCell")
         
-        getBooks()
-        fetchCategory()
+        //getBooks()
+        fetchCategories()
+        getCategory()
     }
     
     @objc public func handleMenu(_ sender: UIBarButtonItem) {
@@ -91,8 +101,13 @@ class NYTBestSellersController: UIViewController {
         menuShowing = !menuShowing
     }
     
+    private func getCategory() {
+        category = userPreference.getCategoryName() ?? "Animals"
+        
+        
+    }
     
-    private func fetchCategory() {
+    private func fetchCategories() {
         CategoryAPIClient.fetchCategories() { [weak self] (result) in
             switch result {
             case .failure(let appError):
@@ -110,7 +125,6 @@ class NYTBestSellersController: UIViewController {
                 print("error getting books: \(appError)")
             case .success(let books):
                 self?.books = books
-                print(books.count)
             }
         }
     }
@@ -187,7 +201,7 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
             // segue to detailVC
             
             let book = books[indexPath.row]
-            var detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
+            let detailVC = BookDetailController(dataPersistence: dataPersistence, book: book)
             
             present(detailVC, animated: true)
             
@@ -198,4 +212,12 @@ extension NYTBestSellersController: UICollectionViewDelegateFlowLayout {
             category = categories[indexPath.row].listName.replacingOccurrences(of: " ", with: "-")
         }
     }
+}
+
+extension NYTBestSellersController: UserPreferenceDelegate {
+    func didChangeCategory(_ userPreference: UserPreference, category: String) {
+        self.category = category
+    }
+    
+    
 }

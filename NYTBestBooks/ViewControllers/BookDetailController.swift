@@ -151,6 +151,7 @@ class BookDetailController: UIViewController {
     private func updateFavoriteStar(_ book: Book) {
         if dataPersistence.hasItemBeenSaved(book) {
             detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+
                     }
         else {
             
@@ -188,6 +189,7 @@ class BookDetailController: UIViewController {
         if let urlString = URL(string: book.bookLinks[3].url) {
             let safariVC = SFSafariViewController(url: urlString)
             present(safariVC, animated: true, completion: nil)
+
         }
     }
     
