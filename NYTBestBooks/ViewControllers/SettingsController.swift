@@ -31,15 +31,15 @@ class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationController?.navigationItem.title = "Settings"
-        //navigationItem.title = "Settings"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Settings"
+      
+        
         view.backgroundColor = .systemBackground
        
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
         fetchCategory()
-    
-        //setPicker()
         
     }
     private func setPicker() {

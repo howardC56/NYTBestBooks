@@ -9,6 +9,20 @@
 import UIKit
 
 class SidebarView: UIView {
+    
+    private lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.text = """
+        
+           CATEGORIES:
+        
+        """
+        label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+        label.textColor = .white
+        label.backgroundColor = .black
+        label.numberOfLines = 0
+        return label
+    }()
 
  public var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,7 +43,20 @@ class SidebarView: UIView {
     }
     
     private func commonInit() {
+        categoryLabelConstraints()
         collectionConstraints()
+    }
+    
+    private func categoryLabelConstraints() {
+        addSubview(categoryLabel)
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            categoryLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            categoryLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
+        ])
+        
     }
     
     private func collectionConstraints() {
@@ -37,7 +64,7 @@ class SidebarView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)

@@ -35,11 +35,13 @@ class NYTTabController: UITabBarController {
       return navController
     }()
     
+    
     private lazy var thirdVC: UIViewController = {
-       let viewController = SettingsController(userPreference: userPreference)
-      viewController.tabBarItem = UITabBarItem(title: "Settings",
-                                               image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
-      return viewController
+       let navController = UINavigationController(rootViewController: SettingsController(userPreference: userPreference))
+      
+        navController.tabBarItem = UITabBarItem(title: "Settings",
+                                                image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear"))
+       return navController
     }()
 
 }
