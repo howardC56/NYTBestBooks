@@ -149,12 +149,10 @@ class BookDetailController: UIViewController {
     private func updateFavoriteStar(_ book: Book) {
         if dataPersistence.hasItemBeenSaved(book) {
             detailView.favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            isSaved = true
         }
         else {
             
             detailView.favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
-            isSaved = false
         }
     }
    
