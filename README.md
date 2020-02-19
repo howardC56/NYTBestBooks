@@ -28,6 +28,7 @@ Each API required an APIKey that was retrieved from [here.](https://developer.ny
 
 
 **How To Use:** <br />
+
 Endpoint NYT: Best Sellers for a category
 ```swift
 https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
