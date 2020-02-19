@@ -43,3 +43,5 @@ https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
 - Data persistance using File manager and User Defaults 
 - Restful API
 - Core Animations
+- [Swift packages](https://github.com/alexpaul/ImageKit) (Shout out to Alex!)
+
