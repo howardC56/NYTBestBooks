@@ -18,4 +18,23 @@ Looking for a great read but tired of searching for a good book one by one? No d
 
 ![gif](Gifs/gifpart1.gif)  ![gif](Gifs/gifpart2.gif)
 
+**Application Program Service (API)**
+The two API’s that were used for this app are:
+- NYT API
+- NYT Book List API
+The NYT API was used to access the best selling books for eaah category and the book's information.
+The NYT Book List API was used to access categories.
+
+Each API required an APIKey that was retrieved from [here.](https://developer.nytimes.com)
+
+**How To Use:**
+Endpoint NYT: Best Sellers for a category
+```swift
+https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
+```
+Endpoint NYT_ListofBooks: 
+```swift
+https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
+```
+
 
