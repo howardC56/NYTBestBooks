@@ -22,7 +22,8 @@ Looking for a great read but tired of searching for a good book one by one? No d
 The two API’s that were used for this app are:
 - NYT API
 - NYT Book List API
-The NYT API was used to access the best selling books for eaah category and the book's information.
+
+The NYT API was used to access the best selling books for eaah category and the book's information. <br />
 The NYT Book List API was used to access categories.
 
 Each API required an APIKey that was retrieved from [here.](https://developer.nytimes.com)
