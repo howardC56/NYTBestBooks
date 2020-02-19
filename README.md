@@ -27,7 +27,7 @@ The NYT API was used to access the best selling books for eaah category and the 
 The NYT Book List API was used to access categories.
 
 Each API required an APIKey that was retrieved from [here.](https://developer.nytimes.com)
-
+<br />
 **How To Use:**
 Endpoint NYT: Best Sellers for a category
 ```swift
