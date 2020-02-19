@@ -16,6 +16,6 @@ Looking for a great read but tired of searching for a good book one by one? No d
 
 **Includes:** 
 
-![gif](Gifs/gifpart1.gif)
+![gif](Gifs/gifpart1.gif)  ![gif](Gifs/gifpart2.gif)
 
 
