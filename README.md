@@ -37,7 +37,7 @@ Endpoint NYT_ListofBooks:
 https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
 ```
 
-## App Uses
+## Used in App
 - Safari web API
 - Dependency injection
 - Data persistance using File manager and User Defaults 
