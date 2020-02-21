@@ -20,6 +20,7 @@ Looking for a great read but tired of searching for a good book one by one? No d
 
 <br />
 ## Application Program Service (API)
+
 **The two API’s that were used for this app are:** 
 - NYT API
 - NYT Book List API
