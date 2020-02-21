@@ -19,6 +19,7 @@ Looking for a great read but tired of searching for a good book one by one? No d
 ![gif](Gifs/gifpart1.gif)  ![gif](Gifs/gifpart2.gif)
 
 <br />
+
 ## Application Program Service (API)
 
 **The two API’s that were used for this app are:** 
